@@ -14,6 +14,7 @@ import Descobrir from '../../screens/Descobrir';
 import Explorar from '../../screens/Explorar';
 import Perfil from '../../screens/Perfil';
 import Veterinario from '../../screens/Veterinario';
+import AgendarConsulta from '../../screens/AgendarConsulta';
 
 
 const Stack = createNativeStackNavigator();
@@ -105,6 +106,23 @@ function AppNavigation() {
             <Stack.Screen
               name="Veterinario"
               component={Veterinario}
+              options={({ route }) => ({
+                title: route.params.selectedItems.title,
+                headerShown:true,
+                headerStyle: {
+                  backgroundColor: '#6FC4CF', 
+                },
+                headerTintColor: '#fff', 
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+                headerTitleAlign: 'center', 
+                headerBackTitleVisible: false,
+              })}
+            />
+            <Stack.Screen
+              name="AgendarConsulta"
+              component={AgendarConsulta}
               options={({ route }) => ({
                 title: route.params.selectedItems.title,
                 headerShown:true,

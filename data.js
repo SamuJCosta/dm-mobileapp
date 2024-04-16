@@ -5,7 +5,12 @@ const data = [
         distancia: 2.5,
         preco: 100,
         phone: 912345678,
+        rating: 5,
+        numerAvaliations: 20,
+        horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento. Marque já a consulta!"
+
     },
     {
         title: "David",
@@ -13,7 +18,11 @@ const data = [
         distancia: 2.5,
         preco: 100,
         phone: 912345678,
+        rating: 4.5,
+        numerAvaliations: 20,
+        horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
     },
     {
         title: "Ricardo",
@@ -21,7 +30,12 @@ const data = [
         distancia: 2.5,
         preco: 100,
         phone: 912345678,
+        rating: 1,
+        numerAvaliations: 20,
+        horario: "Segunda - Sábado das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+
     },
     {
         title: "David",
@@ -29,7 +43,12 @@ const data = [
         distancia: 2.5,
         preco: 100,
         phone: 912345678,
+        rating: 4.1,
+        numerAvaliations: 20,
+        horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+
     },
     {
         title: "Samu",
@@ -37,7 +56,12 @@ const data = [
         distancia: 2.5,
         preco: 100,
         phone: 912345678,
+        rating: 3.5,
+        numerAvaliations: 20,
+        horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+
     },
     {
         title: "Afonso",
@@ -45,7 +69,12 @@ const data = [
         distancia: 2.5,
         preco: 100,
         phone: 912345678,
+        rating: 3.5,
+        numerAvaliations: 20,
+        horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+
     },
     {
         title: "Samu",
@@ -53,7 +82,12 @@ const data = [
         distancia: 2.5,
         preco: 100,
         phone: 912345678,
+        rating: 3.5,
+        numerAvaliations: 20,
+        horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+
     },
     {
         title: "Samu",
@@ -61,7 +95,12 @@ const data = [
         distancia: 2.5,
         preco: 100,
         phone: 912345678,
+        rating: 3.5,
+        numerAvaliations: 20,
+        horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+
     },
     {
         title: "Ricardo",
@@ -69,7 +108,12 @@ const data = [
         distancia: 2.5,
         preco: 100,
         phone: 912345678,
+        rating: 3.5,
+        numerAvaliations: 20,
+        horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+
     },
     {
         title: "Consultório Mata Real",
@@ -77,7 +121,12 @@ const data = [
         distancia: 2.5,
         preco: 100,
         phone: 912345678,
+        rating: 3.5,
+        numerAvaliations: 20,
+        horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+
     },
 ]
 
