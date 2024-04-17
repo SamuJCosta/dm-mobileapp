@@ -9,8 +9,12 @@ const data = [
         numerAvaliations: 20,
         horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
-        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento. Marque já a consulta!"
-
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento. Marque já a consulta!",
+        agendas: {
+            "2024-04-18": 8, // Exemplo: 3 consultas agendadas para o dia 18 de abril de 2024
+            "2024-04-19": 8, // Exemplo: 2 consultas agendadas para o dia 19 de abril de 2024
+            // Outros dias...
+        }    
     },
     {
         title: "David",
@@ -22,7 +26,12 @@ const data = [
         numerAvaliations: 20,
         horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
-        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!",
+        agendas: {
+            "2024-04-18": 8, // Exemplo: 3 consultas agendadas para o dia 18 de abril de 2024
+            "2024-04-19": 2, // Exemplo: 2 consultas agendadas para o dia 19 de abril de 2024
+            // Outros dias...
+        }
     },
     {
         title: "Ricardo",
@@ -34,7 +43,12 @@ const data = [
         numerAvaliations: 20,
         horario: "Segunda - Sábado das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
-        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!",
+        agendas: {
+            "2024-04-18": 3, // Exemplo: 3 consultas agendadas para o dia 18 de abril de 2024
+            "2024-04-19": 2, // Exemplo: 2 consultas agendadas para o dia 19 de abril de 2024
+            // Outros dias...
+        }
 
     },
     {
@@ -47,7 +61,12 @@ const data = [
         numerAvaliations: 20,
         horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
-        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!",
+        agendas: {
+            "2024-04-18": 3, // Exemplo: 3 consultas agendadas para o dia 18 de abril de 2024
+            "2024-04-19": 2, // Exemplo: 2 consultas agendadas para o dia 19 de abril de 2024
+            // Outros dias...
+        }
 
     },
     {
@@ -60,7 +79,12 @@ const data = [
         numerAvaliations: 20,
         horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
-        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!",
+        agendas: {
+            "2024-04-18": 3, // Exemplo: 3 consultas agendadas para o dia 18 de abril de 2024
+            "2024-04-19": 2, // Exemplo: 2 consultas agendadas para o dia 19 de abril de 2024
+            // Outros dias...
+        }
 
     },
     {
@@ -73,7 +97,12 @@ const data = [
         numerAvaliations: 20,
         horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
-        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!",
+        agendas: {
+            "2024-04-18": 3, // Exemplo: 3 consultas agendadas para o dia 18 de abril de 2024
+            "2024-04-19": 2, // Exemplo: 2 consultas agendadas para o dia 19 de abril de 2024
+            // Outros dias...
+        }
 
     },
     {
@@ -86,7 +115,12 @@ const data = [
         numerAvaliations: 20,
         horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
-        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!",
+        agendas: {
+            "2024-04-18": 3, // Exemplo: 3 consultas agendadas para o dia 18 de abril de 2024
+            "2024-04-19": 2, // Exemplo: 2 consultas agendadas para o dia 19 de abril de 2024
+            // Outros dias...
+        }
 
     },
     {
@@ -99,8 +133,12 @@ const data = [
         numerAvaliations: 20,
         horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
-        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
-
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!",
+        agendas: {
+            "2024-04-18": 3, // Exemplo: 3 consultas agendadas para o dia 18 de abril de 2024
+            "2024-04-19": 2, // Exemplo: 2 consultas agendadas para o dia 19 de abril de 2024
+            // Outros dias...
+        }
     },
     {
         title: "Ricardo",
@@ -112,8 +150,12 @@ const data = [
         numerAvaliations: 20,
         horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
-        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
-
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!",
+        agendas: {
+            "2024-04-18": 3, // Exemplo: 3 consultas agendadas para o dia 18 de abril de 2024
+            "2024-04-19": 2, // Exemplo: 2 consultas agendadas para o dia 19 de abril de 2024
+            // Outros dias...
+        }
     },
     {
         title: "Consultório Mata Real",
@@ -125,8 +167,12 @@ const data = [
         numerAvaliations: 20,
         horario: "Segunda - Sexta das 09h - 18h",
         imgUrl: require('./assets/DrPaula.png'),
-        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!"
-
+        descricao: "Dr. Paula, um dos veterinários mais qualificados e experientes e proprietária do mais conveniente Consultório de Santo Tirso, o nosso paraíso está situado no coração da cidade com um ambiente agradável. Estamos prontos para tratar seus amados cães e filhotes com amor e envolvimento.Marque já a consulta!",
+        agendas: {
+            "2024-04-18": 3, // Exemplo: 3 consultas agendadas para o dia 18 de abril de 2024
+            "2024-04-19": 2, // Exemplo: 2 consultas agendadas para o dia 19 de abril de 2024
+            // Outros dias...
+        }
     },
 ]
 
