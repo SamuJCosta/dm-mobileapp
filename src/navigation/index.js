@@ -15,6 +15,7 @@ import Explorar from '../../screens/Explorar';
 import Perfil from '../../screens/Perfil';
 import Veterinario from '../../screens/Veterinario';
 import AgendarConsulta from '../../screens/AgendarConsulta';
+import EditarPerfil from '../../screens/EditarPerfil';
 
 
 const Stack = createNativeStackNavigator();
@@ -137,6 +138,7 @@ function AppNavigation() {
                 headerBackTitleVisible: false,
               })}
             />
+            <Stack.Screen name="EditarPerfil" component={EditarPerfil} />
         </Stack.Navigator>
     </NavigationContainer>
   );

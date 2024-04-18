@@ -1,10 +1,173 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, Image} from 'react-native'
+import { EnvelopeIcon, MapPinIcon, PhoneIcon, UserCircleIcon, NewspaperIcon, ChevronRightIcon, ArrowLeftEndOnRectangleIcon } from 'react-native-heroicons/outline';
 
 export default function Perfil() {
+  const perfil= require("../assets/perfil.png");
+  const pata2= require("../assets/pata2.png");
   return (
-    <View>
-      <Text>Perfil</Text>
+    <View style={styles.container}>
+      <Image source={perfil} style={styles.img}/>
+      <View style={styles.block}>
+                <View style={styles.insideBlock}>
+                  <View style={styles.firstView}>
+                    <Text style={styles.personname}>
+                    Deolinda Kimzimba
+                    </Text>
+                    <TouchableOpacity style={{flexDirection: 'row', marginLeft: 45, columnGap: 8}}>
+                      <ArrowLeftEndOnRectangleIcon color={"red"}  />
+                      <Text style={styles.sair}>Sair</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.secondView}>
+                    <EnvelopeIcon color={"#000"}/>
+                    <Text style={styles.texto}>
+                      deolindakimzimba@gmail.com
+                    </Text>
+                  </View>
+                  <View style={styles.thirdView}>
+                      <PhoneIcon color={"#000"} size={22}/>
+                      <Text style={styles.texto}>
+                        912345678
+                      </Text>
+                    </View>
+                </View>
+                <View style={styles.insideBlock2}>
+                  <Pressable style={styles.categorias} onPress={()=>console.log("A mae do zesan")}>
+                    <UserCircleIcon color={"#000"}/>
+                    <Text style={styles.texto}>
+                      Sobre Mim
+                    </Text>
+                    <ChevronRightIcon style={{marginLeft: 143, color: "#000"}}/>
+                  </Pressable>
+                  <Pressable style={styles.categorias} onPress={()=>console.log("A mae do zesan")}>
+                  <Image source={pata2} style={styles.icon}/>
+                    <Text style={styles.animais}>
+                      Meus Animais
+                    </Text>
+                    <ChevronRightIcon style={{marginLeft: 125, color: "#000"}}/>
+                  </Pressable>
+                  <Pressable style={styles.categorias} onPress={()=>console.log("A mae do zesan")}>
+                    <MapPinIcon color={"#000"}/>
+                    <Text style={styles.texto}>
+                      Minhas Consultas
+                    </Text>
+                    <ChevronRightIcon style={{marginLeft: 92, color: "#000"}}/>
+                  </Pressable>
+                  <Pressable style={styles.categorias} onPress={()=>console.log("A mae do zesan")}>
+                    <NewspaperIcon color={"#000"}/>
+                    <Text style={styles.texto}>
+                      Minhas Receitas
+                    </Text>
+                    <ChevronRightIcon style={{marginLeft: 103, color: "#000"}}/>
+                  </Pressable>
+                </View>
+            </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      alignItems: "center"
+  },
+  img:{
+      width:"100%",
+      height:"50%"
+  },
+  block:{
+    width:"125%",
+    height:"80%",
+    backgroundColor:"#fff",
+    borderRadius:85,
+    position:"absolute",
+    marginTop:265,
+    alignItems:"center"
+},
+insideBlock:{
+    width:340,
+    height:165,
+    backgroundColor:"#fff",
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 5.473 },
+    shadowOpacity: 0.15,
+    shadowRadius: 44,
+    borderRadius:30,
+    marginTop:20,
+},
+firstView:{
+    flexDirection: "row",
+    margin: 20,
+
+},
+personname:{
+color:"#000",
+fontSize: 22,
+fontWeight: "700",
+fontStyle: "normal",
+},
+
+secondView:{
+  flexDirection: "row",
+  columnGap: 12,
+  marginLeft: 35,
+},
+
+texto:{ 
+marginTop: 1.5,
+color: "#000",
+fontSize: 15,
+fontWeight: "500",
+letterSpacing: 0.45,
+},
+
+thirdView:{
+  marginTop: 25,
+  flexDirection: "row",
+  columnGap: 12,
+  marginLeft: 35,
+},
+
+insideBlock2:{
+  width:340,
+  height:160,
+  backgroundColor:"#fff",
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 5.473 },
+  shadowOpacity: 0.15,
+  shadowRadius: 44,
+  borderRadius:30,
+  marginTop:20,
+},
+
+categorias:{
+  marginTop: 13,
+  flexDirection: "row",
+  columnGap: 8,
+  marginLeft: 35,
+},
+
+animais:{
+  flexDirection: "row",
+  columnGap: 8,  
+  marginLeft: 3,
+  color: "#000",
+  fontSize: 15,
+  fontWeight: "500",
+},
+
+icon:{
+  marginLeft: 2,
+  width: 19,
+  height: 19,
+},
+
+sair:{ 
+  marginTop: 3,
+  color: "red",
+  fontSize: 15,
+  fontWeight: "500",
+  letterSpacing: 0.45,
+  },
+})
