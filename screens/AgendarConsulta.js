@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     },
     calendar:{
         borderRadius:10,
-        marginTop:10,
+        marginTop:7,
         width:330,
         height:310
     },
@@ -147,14 +147,14 @@ const styles = StyleSheet.create({
         fontSize:24,
         fontWeight:"500",
         fontStyle:"normal",
-        marginTop:20
+        marginTop:5
     },
     mainContainer:{
         width:"100%",
         height:"30%",
         flexDirection:"row",
         columnGap:15,
-        marginTop:20,
+        marginTop:15,
     },
     firstContainer:{
         width:"50%",
@@ -185,6 +185,7 @@ const styles = StyleSheet.create({
         flexShrink: 0,
         borderRadius: 10,
         backgroundColor: "#6FC4CF",
+        marginTop: 10,
     },
     buttonText:{
         color: "#fff",
@@ -233,3 +234,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
 })
+
+
