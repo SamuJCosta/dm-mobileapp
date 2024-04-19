@@ -138,7 +138,24 @@ function AppNavigation() {
                 headerBackTitleVisible: false,
               })}
             />
-            <Stack.Screen name="EditarPerfil" component={EditarPerfil} />
+            <Stack.Screen
+              name="EditarPerfil"
+              component={EditarPerfil}
+              options={() => ({
+                title: "Editar Perfil",
+                headerShown:true,
+                headerStyle: {
+                  backgroundColor: '#6FC4CF', 
+                },
+                headerTintColor: '#fff', 
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+                headerTitleAlign: 'center', 
+                headerBackTitleVisible: false,
+              })}
+            />
+
         </Stack.Navigator>
     </NavigationContainer>
   );

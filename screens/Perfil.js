@@ -1,8 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Pressable, Image} from 'react-native'
 import { EnvelopeIcon, MapPinIcon, PhoneIcon, UserCircleIcon, NewspaperIcon, ChevronRightIcon, ArrowLeftEndOnRectangleIcon } from 'react-native-heroicons/outline';
+import {useNavigation} from '@react-navigation/native';
 
 export default function Perfil() {
+  const navigation = useNavigation();
   const perfil= require("../assets/perfil.png");
   const pata2= require("../assets/pata2.png");
   return (
@@ -14,7 +16,7 @@ export default function Perfil() {
                     <Text style={styles.personname}>
                     Deolinda Kimzimba
                     </Text>
-                    <TouchableOpacity style={{flexDirection: 'row', marginLeft: 45, columnGap: 8}}>
+                    <TouchableOpacity style={{flexDirection: 'row', marginLeft: 45, columnGap: 8}} onPress={()=>console.log("Saiu")}> 
                       <ArrowLeftEndOnRectangleIcon color={"red"}  />
                       <Text style={styles.sair}>Sair</Text>
                     </TouchableOpacity>
@@ -33,7 +35,7 @@ export default function Perfil() {
                     </View>
                 </View>
                 <View style={styles.insideBlock2}>
-                  <Pressable style={styles.categorias} onPress={()=>console.log("A mae do zesan")}>
+                  <Pressable style={styles.categorias} onPress={()=> navigation.navigate('EditarPerfil')}>
                     <UserCircleIcon color={"#000"}/>
                     <Text style={styles.texto}>
                       Sobre Mim
