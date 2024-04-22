@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Modal, Pressable} from 'react-native'
 import { Calendar } from 'react-native-calendars';
+import {useNavigation} from '@react-navigation/native';
+
 
 export default function AgendarConsulta({route}) {
+
+    const navigation = useNavigation();
 
     const selectedItems = route.params.selectedItems;
     const diaData = new Date();
     const minDateString = diaData.toISOString().split('T')[0];
     const [modalVisible, setModalVisible] = useState(false);
+    const [diaSelecionado, setDiaSelecionado] = useState(null);
+    const [horarioSelecionado, setHorarioSelecionado] = useState(null);
 
     const timers = ["09:30 - 10:30", "10:30 - 11:30", "11:30 - 12:30", "12:30 - 13:30", "14:30 - 15:30", "15:30 - 16:30", "16:30 - 17:30", "17:30 - 18:30"]
 
@@ -56,74 +62,88 @@ export default function AgendarConsulta({route}) {
         return marked;
     }
 
+    const selecionarDia = (dia) => {
+        setDiaSelecionado(dia.dateString);
+    };
+
+
+    const selecionarHorario = (horario) => {
+        setHorarioSelecionado(horario);
+    };
+
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Escolha uma data</Text>
             <Calendar
                 style={styles.calendar}
-                onDayPress={(date) => {
-                    console.log(date);
-                }}
+                onDayPress={(day) => selecionarDia(day)}
                 minDate={minDateString}
                 hideExtraDays={true}
                 markedDates={marcarDias()}
             />
             <Text style={styles.text}>Horarios Disponiveis</Text>
-            <View  style={styles.mainContainer}>
+            <View style={styles.mainContainer}>
                 <View style={styles.firstContainer}>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text>{timers[0]}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text>{timers[2]}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text>{timers[4]}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text>{timers[6]}</Text>
-                    </TouchableOpacity>
+                    {timers.slice(0, 4).map((timer, index) => (
+                        <TouchableOpacity
+                            key={index}
+                            style={[styles.buttons, horarioSelecionado === timer && styles.selectedButton]}
+                            onPress={() => selecionarHorario(timer)}
+                        >
+                            <Text>{timer}</Text>
+                        </TouchableOpacity>
+                    ))}
                 </View>
                 <View style={styles.secondContainer}>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text>{timers[1]}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text>{timers[3]}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text>{timers[5]}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text>{timers[7]}</Text>
-                    </TouchableOpacity>
-                </View>  
+                    {timers.slice(4).map((timer, index) => (
+                        <TouchableOpacity
+                            key={index}
+                            style={[styles.buttons, horarioSelecionado === timer && styles.selectedButton]}
+                            onPress={() => selecionarHorario(timer)}
+                        >
+                            <Text>{timer}</Text>
+                        </TouchableOpacity>
+                    ))}
+                </View>
             </View>
-            <TouchableOpacity style={styles.mainButton} onPress={()=>setModalVisible(true)}>
-                    <Text style={styles.buttonText}>Marcar Consulta</Text>
+            <TouchableOpacity
+                style={styles.mainButton}
+                onPress={() => {
+                    if (diaSelecionado && horarioSelecionado) {
+                        setModalVisible(true);
+                    } else {
+                        // Exibir uma mensagem para o usuário selecionar um dia e horário antes de marcar a consulta
+                        alert("Por favor, selecione um dia e horário antes de marcar a consulta.");
+                    }
+                }}>
+                <Text style={styles.buttonText}>Marcar Consulta</Text>
             </TouchableOpacity>
             <Modal
                 animationType="slide"
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
-                setModalVisible(!modalVisible);
+                    setModalVisible(!modalVisible);
                 }}>
                 <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <Text style={styles.modalText}>Consulta Agendada</Text>
-                    <Pressable
-                    style={[styles.button, styles.buttonOpen]}
-                    onPress={() => setModalVisible(!modalVisible)}>
-                    <Text style={styles.textStyle}>Confirmar</Text>
-                    </Pressable>
-                    <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}>
-                    <Text style={styles.textStyle}>Cancelar</Text>
-                    </Pressable>
-                </View>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Consulta Agendada</Text>
+                        <Text style={styles.modalText}>Dia: {diaSelecionado}</Text>
+                        <Text style={styles.modalText}>Hora: {horarioSelecionado}</Text>
+                        <Text style={styles.modalText}>Status: "Em espera"</Text>
+                        <View style={{flexDirection:"row", columnGap: 10, marginTop:15}}>
+                            <Pressable
+                                style={[styles.button, styles.buttonOpen]}
+                                onPress={() => navigation.goBack()}>
+                                <Text style={styles.textStyle}>Confirmar</Text>
+                            </Pressable>
+                            <Pressable
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => setModalVisible(!modalVisible)}>
+                                <Text style={styles.textStyle}>Cancelar</Text>
+                            </Pressable>
+                        </View>
+                    </View>
                 </View>
             </Modal>
         </View>
@@ -175,6 +195,9 @@ const styles = StyleSheet.create({
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    selectedButton: {
+        backgroundColor: "#6FC4CF",
     },
     mainButton:{
         display: 'flex',
@@ -230,8 +253,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     modalText: {
-        marginBottom: 15,
+        marginBottom: 10,
         textAlign: 'center',
+        fontSize: 18
     },
 })
 

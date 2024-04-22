@@ -2,69 +2,74 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Pressable, Image} from 'react-native'
 import { EnvelopeIcon, MapPinIcon, PhoneIcon, UserCircleIcon, NewspaperIcon, ChevronRightIcon, ArrowLeftEndOnRectangleIcon } from 'react-native-heroicons/outline';
 import {useNavigation} from '@react-navigation/native';
+import clientes from '../clientes';
 
 export default function Perfil() {
   const navigation = useNavigation();
   const perfil= require("../assets/perfil.png");
   const pata2= require("../assets/pata2.png");
+  
+
+  const cliente = clientes[0];
+
   return (
     <View style={styles.container}>
       <Image source={perfil} style={styles.img}/>
       <View style={styles.block}>
-                <View style={styles.insideBlock}>
-                  <View style={styles.firstView}>
-                    <Text style={styles.personname}>
-                    Deolinda Kimzimba
-                    </Text>
-                    <TouchableOpacity style={{flexDirection: 'row', marginLeft: 45, columnGap: 8}} onPress={()=>console.log("Saiu")}> 
-                      <ArrowLeftEndOnRectangleIcon color={"red"}  />
-                      <Text style={styles.sair}>Sair</Text>
-                    </TouchableOpacity>
-                  </View>
-                  <View style={styles.secondView}>
-                    <EnvelopeIcon color={"#000"}/>
-                    <Text style={styles.texto}>
-                      deolindakimzimba@gmail.com
-                    </Text>
-                  </View>
-                  <View style={styles.thirdView}>
-                      <PhoneIcon color={"#000"} size={22}/>
-                      <Text style={styles.texto}>
-                        912345678
-                      </Text>
-                    </View>
-                </View>
-                <View style={styles.insideBlock2}>
-                  <Pressable style={styles.categorias} onPress={()=> navigation.navigate('EditarPerfil')}>
-                    <UserCircleIcon color={"#000"}/>
-                    <Text style={styles.texto}>
-                      Sobre Mim
-                    </Text>
-                    <ChevronRightIcon style={{marginLeft: 143, color: "#000"}}/>
-                  </Pressable>
-                  <Pressable style={styles.categorias} onPress={()=>navigation.navigate('MeusAnimais')}>
-                  <Image source={pata2} style={styles.icon}/>
-                    <Text style={styles.animais}>
-                      Meus Animais
-                    </Text>
-                    <ChevronRightIcon style={{marginLeft: 125, color: "#000"}}/>
-                  </Pressable>
-                  <Pressable style={styles.categorias} onPress={()=> navigation.navigate('MinhasConsultas')}>
-                    <MapPinIcon color={"#000"}/>
-                    <Text style={styles.texto}>
-                      Minhas Consultas
-                    </Text>
-                    <ChevronRightIcon style={{marginLeft: 92, color: "#000"}}/>
-                  </Pressable>
-                  <Pressable style={styles.categorias} onPress={()=>navigation.navigate('MinhasReceitas')}>
-                    <NewspaperIcon color={"#000"}/>
-                    <Text style={styles.texto}>
-                      Minhas Receitas
-                    </Text>
-                    <ChevronRightIcon style={{marginLeft: 103, color: "#000"}}/>
-                  </Pressable>
-                </View>
+        <View style={styles.insideBlock}>
+            <View style={styles.firstView}>
+              <Text style={styles.personname}>
+              {cliente.nome}
+              </Text>
+              <TouchableOpacity style={{flexDirection: 'row', marginLeft: 45, columnGap: 8}} onPress={()=>console.log("Saiu")}> 
+                <ArrowLeftEndOnRectangleIcon color={"red"}  />
+                <Text style={styles.sair}>Sair</Text>
+              </TouchableOpacity>
             </View>
+            <View style={styles.secondView}>
+              <EnvelopeIcon color={"#000"}/>
+              <Text style={styles.texto}>
+                {cliente.email}
+              </Text>
+            </View>
+            <View style={styles.thirdView}>
+                <PhoneIcon color={"#000"} size={22}/>
+                <Text style={styles.texto}>
+                  {cliente.telemovel}
+                </Text>
+            </View>
+        </View>
+        <View style={styles.insideBlock2}>
+          <Pressable style={styles.categorias} onPress={()=> navigation.navigate('EditarPerfil')}>
+            <UserCircleIcon color={"#000"}/>
+            <Text style={styles.texto}>
+              Sobre Mim
+            </Text>
+            <ChevronRightIcon style={{marginLeft: 143, color: "#000"}}/>
+          </Pressable>
+          <Pressable style={styles.categorias} onPress={()=>navigation.navigate('MeusAnimais')}>
+          <Image source={pata2} style={styles.icon}/>
+            <Text style={styles.animais}>
+              Meus Animais
+            </Text>
+            <ChevronRightIcon style={{marginLeft: 125, color: "#000"}}/>
+          </Pressable>
+          <Pressable style={styles.categorias} onPress={()=> navigation.navigate('MinhasConsultas')}>
+            <MapPinIcon color={"#000"}/>
+            <Text style={styles.texto}>
+              Minhas Consultas
+            </Text>
+            <ChevronRightIcon style={{marginLeft: 92, color: "#000"}}/>
+          </Pressable>
+          <Pressable style={styles.categorias} onPress={()=>navigation.navigate('MinhasReceitas')}>
+            <NewspaperIcon color={"#000"}/>
+            <Text style={styles.texto}>
+              Minhas Receitas
+            </Text>
+            <ChevronRightIcon style={{marginLeft: 103, color: "#000"}}/>
+          </Pressable>
+        </View>
+      </View>
     </View>
   )
 }
