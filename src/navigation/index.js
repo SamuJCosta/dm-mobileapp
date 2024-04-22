@@ -21,6 +21,7 @@ import MinhasConsultas from '../../screens/MinhasConsultas';
 import MinhasReceitas from '../../screens/MinhasReceitas';
 import ReceitasAnimal from '../../screens/ReceitasAnimal';
 import ConsultasAnimal from '../../screens/ConsultasAnimal';
+import PerfilAnimal from '../../screens/PerfilAnimal';
 
 
 const Stack = createNativeStackNavigator();
@@ -233,6 +234,23 @@ function AppNavigation() {
               component={ConsultasAnimal}
               options={() => ({
                 title: "Consultas Animal",
+                headerShown:true,
+                headerStyle: {
+                  backgroundColor: '#6FC4CF', 
+                },
+                headerTintColor: '#fff', 
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+                headerTitleAlign: 'center', 
+                headerBackTitleVisible: false,
+              })}
+            />
+            <Stack.Screen
+              name="PerfilAnimal"
+              component={PerfilAnimal}
+              options={() => ({
+                title: "Perfil Animal",
                 headerShown:true,
                 headerStyle: {
                   backgroundColor: '#6FC4CF', 

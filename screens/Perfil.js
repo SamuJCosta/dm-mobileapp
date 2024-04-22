@@ -44,7 +44,7 @@ export default function Perfil() {
                   </Pressable>
                   <Pressable style={styles.categorias} onPress={()=>navigation.navigate('MeusAnimais')}>
                   <Image source={pata2} style={styles.icon}/>
-                    <Text style={styles.animais}>
+                    <Text style={styles.texto}>
                       Meus Animais
                     </Text>
                     <ChevronRightIcon style={{marginLeft: 125, color: "#000"}}/>
@@ -160,9 +160,10 @@ animais:{
 },
 
 icon:{
-  marginLeft: 2,
+  marginLeft: 3,
   width: 19,
   height: 19,
+  
 },
 
 sair:{ 

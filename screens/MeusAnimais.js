@@ -14,9 +14,11 @@ const MeusAnimais = () => {
             </Text>
             <View style={styles.boxanimais}>
                 <View style={styles.bordaanimal}>
+                    <Pressable onPress={()=> navigation.navigate('PerfilAnimal')} >
                 <Image source={animal1} style={styles.img1}/>
+                    </Pressable>
                 <View style={styles.textoanimais}>
-                    <Text style={{fontSize: 20, fontWeight: 700,  }}>
+                    <Text style={{fontSize: 20, fontWeight: 700, }}>
                         Kika
                     </Text>
                     <Text style={{fontSize:15, color:"#064E57", fontWeight:500, marginTop:5}}>
