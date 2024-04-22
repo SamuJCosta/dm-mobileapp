@@ -73,9 +73,9 @@ const MeusAnimais = () => {
 export default MeusAnimais
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
+container: {
+    flex: 1,
+    alignItems: "center",
     },
 boxanimais: {
     marginTop: 15,
@@ -115,7 +115,6 @@ textoanimais:{
 categorias:{
     marginTop: 12,
     flexDirection: "row",
-    paddingVertical: 0,
 },
   texto:{ 
     color:"#064E57",

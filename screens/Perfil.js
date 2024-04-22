@@ -49,7 +49,7 @@ export default function Perfil() {
                     </Text>
                     <ChevronRightIcon style={{marginLeft: 125, color: "#000"}}/>
                   </Pressable>
-                  <Pressable style={styles.categorias} onPress={()=>console.log("A mae do zesan")}>
+                  <Pressable style={styles.categorias} onPress={()=> navigation.navigate('MinhasConsultas')}>
                     <MapPinIcon color={"#000"}/>
                     <Text style={styles.texto}>
                       Minhas Consultas

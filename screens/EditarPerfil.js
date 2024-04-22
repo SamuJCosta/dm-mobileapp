@@ -1,4 +1,3 @@
-import { style } from 'deprecated-react-native-prop-types/DeprecatedViewPropTypes';
 import React from 'react'
 import {useNavigation} from '@react-navigation/native';
 import { View, Text, StyleSheet,TextInput, TouchableOpacity, Image, Pressable} from 'react-native'
