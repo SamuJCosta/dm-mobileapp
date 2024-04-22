@@ -23,13 +23,13 @@ const MeusAnimais = () => {
                         Border Collie
                     </Text>
                     <View style={styles.categoriasanimais}>
-                    <Pressable style={styles.categorias} onPress={()=> console.log("Receitas")}>
+                    <Pressable style={styles.categorias} onPress={()=> navigation.navigate('ReceitasAnimal')}>
                     <Text style={styles.texto}>
                       Ver Receitas
                     </Text>
                     <ChevronRightIcon style={{color: "#064E57", margin: -4}}/>
                     </Pressable>
-                    <Pressable style={styles.categorias} onPress={()=> console.log("Consultas")}>
+                    <Pressable style={styles.categorias} onPress={()=> navigation.navigate('ConsultasAnimal')}>
                     <Text style={styles.texto}>
                       Ver Consultas
                     </Text>

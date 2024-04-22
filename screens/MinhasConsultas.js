@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Pressable, Button, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Pressable, TouchableOpacity } from 'react-native'
 import { CheckCircleIcon, TrashIcon } from 'react-native-heroicons/outline'
 import {useNavigation} from '@react-navigation/native';
 

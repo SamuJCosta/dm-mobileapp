@@ -18,6 +18,9 @@ import AgendarConsulta from '../../screens/AgendarConsulta';
 import EditarPerfil from '../../screens/EditarPerfil';
 import MeusAnimais from '../../screens/MeusAnimais';
 import MinhasConsultas from '../../screens/MinhasConsultas';
+import MinhasReceitas from '../../screens/MinhasReceitas';
+import ReceitasAnimal from '../../screens/ReceitasAnimal';
+import ConsultasAnimal from '../../screens/ConsultasAnimal';
 
 
 const Stack = createNativeStackNavigator();
@@ -179,6 +182,57 @@ function AppNavigation() {
               component={MinhasConsultas}
               options={() => ({
                 title: "Minhas Consultas",
+                headerShown:true,
+                headerStyle: {
+                  backgroundColor: '#6FC4CF', 
+                },
+                headerTintColor: '#fff', 
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+                headerTitleAlign: 'center', 
+                headerBackTitleVisible: false,
+              })}
+            />
+            <Stack.Screen
+              name="MinhasReceitas"
+              component={MinhasReceitas}
+              options={() => ({
+                title: "Minhas Receitas",
+                headerShown:true,
+                headerStyle: {
+                  backgroundColor: '#6FC4CF', 
+                },
+                headerTintColor: '#fff', 
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+                headerTitleAlign: 'center', 
+                headerBackTitleVisible: false,
+              })}
+            />
+            <Stack.Screen
+              name="ReceitasAnimal"
+              component={ReceitasAnimal}
+              options={() => ({
+                title: "Receitas Animal",
+                headerShown:true,
+                headerStyle: {
+                  backgroundColor: '#6FC4CF', 
+                },
+                headerTintColor: '#fff', 
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+                headerTitleAlign: 'center', 
+                headerBackTitleVisible: false,
+              })}
+            />
+            <Stack.Screen
+              name="ConsultasAnimal"
+              component={ConsultasAnimal}
+              options={() => ({
+                title: "Consultas Animal",
                 headerShown:true,
                 headerStyle: {
                   backgroundColor: '#6FC4CF', 
