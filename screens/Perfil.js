@@ -165,9 +165,10 @@ animais:{
 },
 
 icon:{
-  marginLeft: 2,
+  marginLeft: 3,
   width: 19,
   height: 19,
+  
 },
 
 sair:{ 

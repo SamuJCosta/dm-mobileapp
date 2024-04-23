@@ -6,7 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 
 
 export default function Inicio() {
-
   const pata= require('../assets/pata.png');
   const location= require('../assets/location.png');
   const map= require('../assets/map.png');
@@ -16,6 +15,7 @@ export default function Inicio() {
   const imageAnimal2= require('../assets/animal2.png');
   const gps= require('../assets/gps.png');
   const coin= require('../assets/coin.png');
+  
 
 
 
@@ -93,7 +93,7 @@ export default function Inicio() {
           justifyContent:'center',
           marginTop: -10
         }}>
-        <Pressable onPress={()=> console.log("Button was pressed")} style={{
+        <Pressable onPress={()=> navigation.navigate('PerfilAnimal')} style={{
           flexDirection:"column",
           alignItems:"center"
         }}>
