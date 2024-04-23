@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   View,
@@ -11,10 +11,13 @@ import {
 } from "react-native";
 import { PencilIcon } from "react-native-heroicons/outline";
 
-export default function EditarPerfil() {
+export default function EditarPerfil( {route} ) {
   const perfil = require("../assets/perfil.png");
+  const cliente = route.params.selectedItems;
   const navigation = useNavigation();
+
   return (
+    
     <View style={styles.container}>
       <Image source={perfil} style={styles.img} />
       <View style={styles.block}>
@@ -26,7 +29,7 @@ export default function EditarPerfil() {
         <Text style={styles.informacoes}>NOME COMPLETO</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="Deolinda Kimzimba"
+            placeholder={cliente.nome}
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
@@ -36,7 +39,7 @@ export default function EditarPerfil() {
         <Text style={styles.informacoes}>EMAIL</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="deolindakimzimba@gmail.com"
+            placeholder={cliente.email}
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
@@ -46,7 +49,7 @@ export default function EditarPerfil() {
         <Text style={styles.informacoes}>TELEFONE</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="919724482"
+            placeholder={cliente.telemovel.toString()}
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"

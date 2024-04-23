@@ -11,9 +11,6 @@ import { useNavigation } from "@react-navigation/native";
 
 const MinhasConsultas = () => {
   const navigation = useNavigation();
-  const [checked, setChecked] = useState(
-    useState(consulta.map((item) => ({ ...item, selected: false })))
-  ); //para usar com a bd
 
   return (
     <View style={styles.container}>

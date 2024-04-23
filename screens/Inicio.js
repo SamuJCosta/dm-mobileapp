@@ -2,6 +2,8 @@ import { View, Text, Image, Pressable, StyleSheet, Dimensions } from 'react-nati
 import React from 'react'
 import Carousel from 'react-native-snap-carousel';
 import data from '../data';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function Inicio() {
 
@@ -21,8 +23,11 @@ export default function Inicio() {
 
   const sliderWidth = screenWidth;
   const itemWidth = sliderWidth * 8;
+  const navigation = useNavigation();
+
 
   const renderItem = ( {item} ) =>(
+    <Pressable onPress={() => onPressItem(item)}>
     <View style={{
       flexDirection: 'row',
       marginLeft: 10,
@@ -48,7 +53,12 @@ export default function Inicio() {
         
       </View>
     </View>
+    </Pressable>
   )
+
+  const onPressItem = (item) => {
+    navigation.navigate('Veterinario', { selectedItems: item });
+  };
 
 
   return (
