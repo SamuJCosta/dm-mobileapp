@@ -1,20 +1,20 @@
 import { View, Text, Image, Pressable, StyleSheet, Dimensions } from 'react-native'
 import React from 'react'
 import Carousel from 'react-native-snap-carousel';
-import data from '../data';
+import data from '../../data';
 import { useNavigation } from '@react-navigation/native';
 
 
 export default function Inicio() {
-  const pata= require('../assets/pata.png');
-  const location= require('../assets/location.png');
-  const map= require('../assets/map.png');
-  const veterinario= require('../assets/veterinario.png');
-  const mensagem= require('../assets/mensagem.png');
-  const imageAnimal1= require('../assets/animal1.png');
-  const imageAnimal2= require('../assets/animal2.png');
-  const gps= require('../assets/gps.png');
-  const coin= require('../assets/coin.png');
+  const pata= require('../../assets/pata.png');
+  const location= require('../../assets/location.png');
+  const map= require('../../assets/map.png');
+  const veterinario= require('../../assets/veterinario.png');
+  const mensagem= require('../../assets/mensagem.png');
+  const imageAnimal1= require('../../assets/animal1.png');
+  const imageAnimal2= require('../../assets/animal2.png');
+  const gps= require('../../assets/gps.png');
+  const coin= require('../../assets/coin.png');
   
 
 

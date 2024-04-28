@@ -2,9 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 
 const PerfilAnimal = () => {
-    const animal1= require("../assets/Animal1Perfil.png");
-    const gender= require("../assets/femenine.png");
-    const pata2= require("../assets/pata2.png");
+    const animal1= require("../../assets/Animal1Perfil.png");
+    const gender= require("../../assets/femenine.png");
+    const pata2= require("../../assets/pata2.png");
     return (
         <View style={styles.container}>
             <Image source={animal1} style={styles.img}/>

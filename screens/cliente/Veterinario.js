@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Pressable, Image} from 'react-native'
 import { ClockIcon } from "react-native-heroicons/outline";
-import Rating from '../src/components/Rating';
+import Rating from '../../src/components/Rating';
 import {useNavigation} from '@react-navigation/native';
 
 export default function Veterinario( {route}) {

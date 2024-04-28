@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import { EnvelopeIcon, LockClosedIcon } from "react-native-heroicons/outline";
 
-const InputWithIcon = ({ placeholder, iconColor, ...props }) => {
+const InputWithIcon = ({ placeholder, iconColor, onChangeText, value, ...props }) => {
 
   if(placeholder === "Palavra-passe" || placeholder === "Verifique Palavra-passe"){
       return (
@@ -12,6 +12,8 @@ const InputWithIcon = ({ placeholder, iconColor, ...props }) => {
               placeholder={placeholder}
               placeholderTextColor="#8D8D8D"
               secureTextEntry
+              onChangeText={onChangeText}
+              value={value}
               {...props}
             />
           </View>
@@ -23,6 +25,8 @@ const InputWithIcon = ({ placeholder, iconColor, ...props }) => {
           <TextInput
               placeholder={placeholder}
               placeholderTextColor="#8D8D8D"
+              onChangeText={onChangeText} 
+              value={value}
               {...props}
           />
           </View>

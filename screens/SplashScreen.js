@@ -65,7 +65,7 @@ export default function SplashScreen() {
           marginHorizontal: 22,
           marginTop: 10
         }}>
-          <Text style = {{fontSize: 16, color: "#000"}}>Já tem conta criada? </Text>
+          <Text style = {{fontSize: 16, color: "#000"}}>Entrar como Admin!</Text>
           <Pressable
             onPress={()=> navigation.navigate('Login')}
           >

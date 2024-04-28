@@ -12,7 +12,7 @@ import {
 import { PencilIcon } from "react-native-heroicons/outline";
 
 export default function EditarPerfil( {route} ) {
-  const perfil = require("../assets/perfil.png");
+  const perfil = require("../../assets/perfil.png");
   const cliente = route.params.selectedItems;
   const navigation = useNavigation();
 
