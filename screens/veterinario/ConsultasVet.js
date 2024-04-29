@@ -19,3 +19,4 @@ export default class Preview extends Component {
 
 const styles = StyleSheet.create({})
 
+

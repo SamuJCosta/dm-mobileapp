@@ -11,7 +11,7 @@ import {
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import InputWithIcon from "../src/components/InputWithIcon";
-import clientes from "../clientes"; // Importe o array de clientes
+import clientes from "../data/clientes"; // Importe o array de clientes
 
 export default function Login() {
   const logoImg = require("../assets/logo.png");
@@ -36,7 +36,7 @@ export default function Login() {
         navigation.navigate("HomeScreen");
       } else if (user.role === 1) {
         // Veterinário
-        navigation.navigate("InicioVet");
+        navigation.navigate("VetScreen");
       } else if (user.role === 2) {
         // Admin
         navigation.navigate("InicioAdmin");
