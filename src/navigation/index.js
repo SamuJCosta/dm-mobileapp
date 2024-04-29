@@ -9,19 +9,21 @@ import Registo from '../../screens/Registo';
 import RecuperacaoPalavraPasse from '../../screens/RecuperacaoPalavraPasse';
 import VerificacaoCode from '../../screens/VerificacaoCode';
 import NovaPalavraPasse from '../../screens/NovaPalavraPasse';
-import Inicio from '../../screens/Inicio';
-import Descobrir from '../../screens/Descobrir';
-import Explorar from '../../screens/Explorar';
+import Inicio from '../../screens/cliente/Inicio';
+import Descobrir from '../../screens/cliente/Descobrir';
+import Explorar from '../../screens/cliente/Explorar';
 import Perfil from '../../screens/Perfil';
-import Veterinario from '../../screens/Veterinario';
-import AgendarConsulta from '../../screens/AgendarConsulta';
-import EditarPerfil from '../../screens/EditarPerfil';
-import MeusAnimais from '../../screens/MeusAnimais';
-import MinhasConsultas from '../../screens/MinhasConsultas';
-import MinhasReceitas from '../../screens/MinhasReceitas';
-import ReceitasAnimal from '../../screens/ReceitasAnimal';
-import ConsultasAnimal from '../../screens/ConsultasAnimal';
-import PerfilAnimal from '../../screens/PerfilAnimal';
+import Veterinario from '../../screens/cliente/Veterinario';
+import AgendarConsulta from '../../screens/cliente/AgendarConsulta';
+import EditarPerfil from '../../screens/cliente/EditarPerfil';
+import MeusAnimais from '../../screens/cliente/MeusAnimais';
+import MinhasConsultas from '../../screens/cliente/MinhasConsultas';
+import MinhasReceitas from '../../screens/cliente/MinhasReceitas';
+import ReceitasAnimal from '../../screens/cliente/ReceitasAnimal';
+import ConsultasAnimal from '../../screens/cliente/ConsultasAnimal';
+import PerfilAnimal from '../../screens/cliente/PerfilAnimal';
+import InicioVet from '../../screens/veterinario/InicioVet';
+import InicioAdmin from '../../screens/admin/InicioAdmin';
 
 
 const Stack = createNativeStackNavigator();
@@ -101,7 +103,7 @@ function HomeScreen() {
 function AppNavigation() {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='HomeScreen' screenOptions ={{headerShown: false}}>
+        <Stack.Navigator initialRouteName='SplashScreen' screenOptions ={{headerShown: false}}>
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
             <Stack.Screen name="Login" component={Login} />
@@ -263,6 +265,8 @@ function AppNavigation() {
                 headerBackTitleVisible: false,
               })}
             />
+            <Stack.Screen name="InicioVet" component={InicioVet} />
+            <Stack.Screen name="InicioAdmin" component={InicioAdmin} />
         </Stack.Navigator>
     </NavigationContainer>
   );

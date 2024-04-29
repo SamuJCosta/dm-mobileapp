@@ -4,8 +4,8 @@ import { useNavigation } from "@react-navigation/native";
 import { ChevronRightIcon } from "react-native-heroicons/outline";
 
 const MeusAnimais = () => {
-  const animal1 = require("../assets/animal1.png");
-  const animal2 = require("../assets/animal2.png");
+  const animal1 = require("../../assets/animal1.png");
+  const animal2 = require("../../assets/animal2.png");
   const navigation = useNavigation();
   return (
     <View style={styles.container}>

@@ -51,13 +51,12 @@ export default function Perfil() {
           </View>
         </View>
         <View style={styles.insideBlock2}>
-          <Pressable
-            style={styles.categorias}
-            onPress={() => navigation.navigate("EditarPerfil")}
-          >
-            <UserCircleIcon color={"#000"} />
-            <Text style={styles.texto}>Sobre Mim</Text>
-            <ChevronRightIcon style={{ marginLeft: 143, color: "#000" }} />
+          <Pressable style={styles.categorias} onPress={()=> navigation.navigate('EditarPerfil' , {selectedItems: cliente})}>
+            <UserCircleIcon color={"#000"}/>
+            <Text style={styles.texto}>
+              Sobre Mim
+            </Text>
+            <ChevronRightIcon style={{marginLeft: 143, color: "#000"}}/>
           </Pressable>
           <Pressable
             style={styles.categorias}
