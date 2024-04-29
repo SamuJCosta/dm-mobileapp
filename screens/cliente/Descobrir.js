@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, FlatList, Image, Text, Pressable } from 'react-native';
 import { MagnifyingGlassIcon, ChevronRightIcon, PhoneIcon } from 'react-native-heroicons/outline';
 import {useNavigation} from '@react-navigation/native';
-import Data from '../../data';
+import Data from '../../data/data';
 
 export default function Descobrir() {
 

@@ -2,10 +2,10 @@ const clientes = [
     {
         id:1,
         nome: "Deolinda Kimzimba",
-        email:"deolindakimzimba@gmail.com",
+        email:"cliente@gmail.com",
         password: "123456",
         telemovel: 912345678,
-        img: require("./assets/perfil.png"),
+        img: require("../assets/perfil.png"),
         role: 0,
     },
     {
@@ -14,7 +14,7 @@ const clientes = [
         email:"davidabreu@gmail.com",
         password: "123456",
         telemovel: 912345678,
-        img: require("./assets/perfil.png"),
+        img: require("../assets/perfil.png"),
         role: 1,
     },
     {
@@ -23,7 +23,7 @@ const clientes = [
         email:"admin@gmail.com",
         password: "123456",
         telemovel: 912345678,
-        img: require("./assets/perfil.png"),
+        img: require("../assets/perfil.png"),
         role: 2,
     },
 ]

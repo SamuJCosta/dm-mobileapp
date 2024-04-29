@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AdjustmentsHorizontalIcon, HomeIcon, MagnifyingGlassIcon, UserIcon } from 'react-native-heroicons/outline';
+import { AdjustmentsHorizontalIcon, DocumentCheckIcon, HomeIcon, MagnifyingGlassIcon, UserIcon } from 'react-native-heroicons/outline';
 import SplashScreen from '../../screens/SplashScreen';
 import Login from '../../screens/Login';
 import Registo from '../../screens/Registo';
@@ -23,6 +23,8 @@ import ReceitasAnimal from '../../screens/cliente/ReceitasAnimal';
 import ConsultasAnimal from '../../screens/cliente/ConsultasAnimal';
 import PerfilAnimal from '../../screens/cliente/PerfilAnimal';
 import InicioVet from '../../screens/veterinario/InicioVet';
+import ConsultasVet from '../../screens/veterinario/ConsultasVet';
+import PerfilVet from '../../screens/veterinario/PerfilVet';
 import InicioAdmin from '../../screens/admin/InicioAdmin';
 
 
@@ -99,12 +101,70 @@ function HomeScreen() {
     </Tab.Navigator>
   );
 }
+function VetScreen() {
+  return(
+    <Tab.Navigator
+      initialRouteName='InicioVet'
+      screenOptions={{
+        headerStyle:{
+          backgroundColor:"#6FC4CF",
+        },
+        tabBarStyle:{
+          backgroundColor:"#6FC4CF", 
+          color:"#fff", 
+          alignItems:"center", 
+          justifyContent:"center"
+      }}}
+      >
+      <Tab.Screen
+        name='InicioVet'
+        component={InicioVet}
+        options={{title: 'Inicio', 
+        tabBarLabelStyle:{ 
+            fontWeight: 'normal', 
+            fontSize: 12, 
+            color: '#fff' 
+        },
+        tabBarIcon:({size}) => (
+          <HomeIcon size={size} color={"#fff"}/>
+        )}}
+      />
+      <Tab.Screen
+        name='ConsultasVet'
+        component={ConsultasVet}
+        options={{title: 'Consultas', 
+        tabBarLabelStyle:{ 
+            fontWeight: 'normal', 
+            fontSize: 12, 
+            color: '#fff' 
+        },
+        tabBarIcon:({size}) => (
+          <DocumentCheckIcon size={size} color={"#fff"}/>
+        )}}
+      />
+      <Tab.Screen
+        name='PerfilVet'
+        component={PerfilVet}
+        options={{title: 'Perfil', 
+        tabBarLabelStyle:{ 
+            fontWeight: 'normal', 
+            fontSize: 12, 
+            color: '#fff' 
+        },
+        tabBarIcon:({size}) => (
+          <UserIcon size={size} color={"#fff"}/>
+        )}}
+      />
+    </Tab.Navigator>
+  );
+}
 
 function AppNavigation() {
   return (
     <NavigationContainer>
         <Stack.Navigator initialRouteName='SplashScreen' screenOptions ={{headerShown: false}}>
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
+            <Stack.Screen name="VetScreen" component={VetScreen} />
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Registo" component={Registo} />
@@ -265,7 +325,6 @@ function AppNavigation() {
                 headerBackTitleVisible: false,
               })}
             />
-            <Stack.Screen name="InicioVet" component={InicioVet} />
             <Stack.Screen name="InicioAdmin" component={InicioAdmin} />
         </Stack.Navigator>
     </NavigationContainer>
