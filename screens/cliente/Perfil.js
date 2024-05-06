@@ -2,12 +2,12 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Pressable, Image} from 'react-native'
 import { EnvelopeIcon, MapPinIcon, PhoneIcon, UserCircleIcon, NewspaperIcon, ChevronRightIcon, ArrowLeftEndOnRectangleIcon } from 'react-native-heroicons/outline';
 import {useNavigation} from '@react-navigation/native';
-import clientes from '../data/clientes';
+import clientes from '../../data/clientes';
 
 export default function Perfil() {
   const navigation = useNavigation();
-  const perfil= require("../assets/perfil.png");
-  const pata2= require("../assets/pata2.png");
+  const perfil= require("../../assets/perfil.png");
+  const pata2= require("../../assets/pata2.png");
   
 
   const cliente = clientes[0];

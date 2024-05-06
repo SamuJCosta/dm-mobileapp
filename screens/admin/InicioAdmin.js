@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
-export default class InicioAdmin extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  render() {
+export default function InicioAdmin() {
     return (
-      <View>
-        <Text> InicioAdmin </Text>
-      </View>
-    );
-  }
+        <View style={styles.container}>
+            <Text>InicioAdmin</Text>
+        </View>
+    )
 }
+
+
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  });
