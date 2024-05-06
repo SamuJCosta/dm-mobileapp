@@ -2,7 +2,7 @@ const clientes = [
     {
         id:1,
         nome: "Deolinda Kimzimba",
-        email:"cliente@gmail.com",
+        email:"cliente",
         password: "123456",
         telemovel: 912345678,
         img: require("../assets/perfil.png"),
@@ -11,7 +11,7 @@ const clientes = [
     {
         id:2,
         nome: "David Abreu",
-        email:"davidabreu@gmail.com",
+        email:"vet",
         password: "123456",
         telemovel: 912345678,
         img: require("../assets/perfil.png"),
@@ -20,7 +20,7 @@ const clientes = [
     {
         id:3,
         nome: "Admin",
-        email:"admin@gmail.com",
+        email:"admin",
         password: "123456",
         telemovel: 912345678,
         img: require("../assets/perfil.png"),

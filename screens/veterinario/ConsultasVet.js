@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
-export default class Preview extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  render() {
+export default function ConsultasVet() {
     return (
-      <View>
-        <Text> Preview </Text>
-      </View>
-    );
-  }
+        <View style={styles.container}>
+            <Text>ConsultasVet</Text>
+        </View>
+    )
 }
 
-const styles = StyleSheet.create({})
-
-
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        justifyContent:"center",
+        alignItems:"center"
+    }
+})
