@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import { PencilIcon } from "react-native-heroicons/outline";
 
-export default function EditarPerfil( {route} ) {
-  const perfil = require("../../assets/perfil.png");
+export default function EditarPerfilVet( {route} ) {
+  const perfil = require("../../assets/DrPaula.png");
   const cliente = route.params.selectedItems;
   const navigation = useNavigation();
 
@@ -128,3 +128,5 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
 });
+
+

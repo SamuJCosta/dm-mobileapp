@@ -16,8 +16,10 @@ export default function DetalhesDoDia({ route }) {
 
   return (
     <View style={styles.container}>
-      <Text>Consultas do dia {selectedItems}</Text>
-      <FlatList data={consulta} renderItem={renderItem} />
+      <View>
+        <Text>Consultas do dia {selectedItems}</Text>
+        <FlatList data={consulta} renderItem={renderItem}/>
+      </View>
     </View>
   );
 }
