@@ -17,12 +17,12 @@ import {
   ArrowLeftEndOnRectangleIcon,
 } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
-import clientes from "../clientes";
+import clientes from "../../data/clientes";
 
 export default function Perfil() {
   const navigation = useNavigation();
-  const perfil = require("../assets/perfil.png");
-  const pata2 = require("../assets/pata2.png");
+  const perfil = require("../../assets/perfil.png");
+  const pata2 = require("../../assets/pata2.png");
 
   const cliente = clientes[0];
 
