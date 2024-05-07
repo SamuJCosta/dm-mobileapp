@@ -1,54 +1,63 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
   StyleSheet,
-  TextInput,
-  TouchableOpacity,
   Image,
   Pressable,
+  TextInput,
+  TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { PencilIcon } from "react-native-heroicons/outline";
 
-export default function EditarPerfil({ route }) {
-  const perfil = require("../../assets/perfil.png");
-  const cliente = route.params.selectedItems;
+export default function InicioAdmin() {
+  const perfiladmin = require("../../assets/AdminImg.png");
   const navigation = useNavigation();
-
+  
   return (
     <View style={styles.container}>
-      <Image source={perfil} style={styles.img} />
+      <Image source={perfiladmin} style={styles.img} />
       <View style={styles.block}>
         <Pressable onPress={() => console.log("Editar")}>
           <View style={styles.eclipse}>
             <PencilIcon color={"white"} margin={8} />
           </View>
         </Pressable>
-        <Text style={styles.informacoes}>NOME COMPLETO</Text>
+        <Text style={styles.informacao}>NOME CONSULTÓRIO</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder={cliente.nome}
+            placeholder="Consultório Mata Real"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
           />
         </View>
-        <Text style={styles.informacoes}>EMAIL</Text>
+        <Text style={styles.informacao}>EMAIL</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder={cliente.email}
+            placeholder="admin@gmail.com"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
           />
         </View>
-        <Text style={styles.informacoes}>TELEFONE</Text>
+        <Text style={styles.informacao}>TELEFONE</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder={cliente.telemovel.toString()}
+            placeholder="919724489"
+            placeholderTextColor="#6B6E82"
+            fontSize="14"
+            fontWeight="400"
+            style={{ marginLeft: 10 }}
+          />
+        </View>
+        <Text style={styles.informacao}>LOCALIZAÇÃO</Text>
+        <View style={styles.insideBlock}>
+          <TextInput
+            placeholder="Rua São João da Poeira, N40, Porto"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
@@ -57,9 +66,9 @@ export default function EditarPerfil({ route }) {
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Perfil")}
+          onPress={() => navigation.navigate("AdminScreen")}
         >
-          <Text style={styles.buttonText}>SALVAR</Text>
+          <Text style={styles.buttonText}>CRIAR</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -73,7 +82,16 @@ const styles = StyleSheet.create({
   },
   img: {
     width: "100%",
-    height: "50%",
+    height: "40%",
+  },
+  block: {
+    width: "120%",
+    height: "100%",
+    backgroundColor: "#fff",
+    borderRadius: 85,
+    position: "absolute",
+    marginTop: 230,
+    alignItems: "center",
   },
   eclipse: {
     margin: -20,
@@ -82,20 +100,11 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: "#6FC4CF",
   },
-  block: {
-    width: "120%",
-    height: "80%",
-    backgroundColor: "#fff",
-    borderRadius: 85,
-    position: "absolute",
-    marginTop: 240,
-    alignItems: "center",
-  },
-  informacoes: {
+  informacao: {
     fontSize: 14,
     fontWeight: "400",
     color: "#141415",
-    marginTop: 35,
+    marginTop: 20,
     alignSelf: "flex-start",
     marginLeft: 63,
   },
@@ -119,7 +128,7 @@ const styles = StyleSheet.create({
     flexShrink: 0,
     borderRadius: 10,
     backgroundColor: "#6FC4CF",
-    marginTop: 30,
+    marginTop: 8,
   },
   buttonText: {
     color: "#fff",

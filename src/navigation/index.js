@@ -32,7 +32,10 @@ import InicioVet from "../../screens/veterinario/InicioVet";
 import ConsultasVet from "../../screens/veterinario/ConsultasVet";
 import PerfilVet from "../../screens/veterinario/PerfilVet";
 import DetalhesDoDia from "../../screens/veterinario/DetalhesDoDia";
+import CriarConsultorio from "../../screens/admin/CriarConsultorio";
 import InicioAdmin from "../../screens/admin/InicioAdmin";
+import VetAdmin from "../../screens/admin/VetAdmin";
+import ClientesAdmin from "../../screens/admin/ClientesAdmin";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -159,6 +162,67 @@ function VetScreen() {
       <Tab.Screen
         name="PerfilVet"
         component={PerfilVet}
+        options={{
+          title: "Perfil",
+          tabBarLabelStyle: {
+            fontWeight: "normal",
+            fontSize: 12,
+            color: "#fff",
+          },
+          tabBarIcon: ({ size }) => <UserIcon size={size} color={"#fff"} />,
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+function AdminScreen() {
+  return (
+    <Tab.Navigator
+      initialRouteName="InicioAdmin"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#6FC4CF",
+        },
+        tabBarStyle: {
+          backgroundColor: "#6FC4CF",
+          color: "#fff",
+          alignItems: "center",
+          justifyContent: "center",
+        },
+      }}
+    >
+      <Tab.Screen
+        name="InicioAdmin"
+        component={InicioAdmin}
+        options={{
+          title: "Inicio",
+          tabBarLabelStyle: {
+            fontWeight: "normal",
+            fontSize: 12,
+            color: "#fff",
+          },
+          tabBarIcon: ({ size }) => <HomeIcon size={size} color={"#fff"} />,
+        }}
+      />
+      <Tab.Screen
+        name="VetAdmin"
+        component={VetAdmin}
+        options={{
+          title: "Consultas",
+          tabBarLabelStyle: {
+            fontWeight: "normal",
+            fontSize: 12,
+            color: "#fff",
+          },
+          tabBarIcon: ({ size }) => (
+            <DocumentCheckIcon size={size} color={"#fff"} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ClientesAdmin"
+        component={ClientesAdmin}
         options={{
           title: "Perfil",
           tabBarLabelStyle: {
@@ -363,9 +427,28 @@ function AppNavigation() {
           })}
         />
         <Stack.Screen name="InicioAdmin" component={InicioAdmin} />
+        <Stack.Screen name="AdminScreen" component={AdminScreen} />
+        <Stack.Screen
+          name="CriarConsultorio"
+          component={CriarConsultorio}
+          options={() => ({
+            title: "CriarConsultorio",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
+
 }
 
 export default AppNavigation;
