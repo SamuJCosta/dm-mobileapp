@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, Pressable } from "reac
 import { PencilIcon, PlusIcon, TrashIcon, UserIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 
-const ClientesAdmin = () => {
+export default function ClientesAdmin() {
   const navigation = useNavigation();
   const firstuser = require("../../assets/1User.png");
 
@@ -15,7 +15,7 @@ const ClientesAdmin = () => {
           <Text style={styles.texto}>Clientes</Text>
           <TouchableOpacity 
             style={styles.button}
-            onPress={() => navigation.navigate("AdicionarCliente")}
+            onPress={() => navigation.navigate("AdicionarClienteAdmin")}
           >
             <PlusIcon color={"white"}/>
             <Text style={styles.buttonText}>Adicionar Cliente</Text>
@@ -30,7 +30,7 @@ const ClientesAdmin = () => {
           <Pressable onPress={()=> console.log("Apagado!")}>
           <TrashIcon color={"gray"} marginTop={10}/>
           </Pressable>
-          <Pressable onPress={()=> navigation.navigate('EditarCliente')}>
+          <Pressable onPress={()=> navigation.navigate('EditarClienteAdmin')}>
           <PencilIcon color={"gray"} marginLeft={40} marginTop={10}/>
           </Pressable>
           </View>
@@ -38,8 +38,6 @@ const ClientesAdmin = () => {
     </View>
   );
 };
-
-export default ClientesAdmin;
 
 const styles = StyleSheet.create({
   container: {
@@ -88,6 +86,7 @@ const styles = StyleSheet.create({
     marginTop:25,
   },
   infos:{
+    width:190,
     flexDirection:"column",
     marginRight:35
   },

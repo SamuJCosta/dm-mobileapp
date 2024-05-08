@@ -37,11 +37,13 @@ import EditarPerfilVet from "../../screens/veterinario/EditarPerfilVet";
 import ListaAnimaisVet from "../../screens/veterinario/ListaAnimaisVet";
 import ListaClientesVet from "../../screens/veterinario/ListaClientesVet";
 import ListaReceitasVet from "../../screens/veterinario/ListaReceitasVet";
-import CriarConsultorio from "../../screens/admin/CriarConsultorio";
+import CriarConsultorioAdmin from "../../screens/admin/CriarConsultorioAdmin";
 import InicioAdmin from "../../screens/admin/InicioAdmin";
 import VetAdmin from "../../screens/admin/VetAdmin";
 import ClientesAdmin from "../../screens/admin/ClientesAdmin";
-
+import EditarClienteAdmin from "../../screens/admin/EditarClienteAdmin";
+import AdicionarClienteAdmin from "../../screens/admin/AdicionarClienteAdmin";
+import ConsultasVetAdmin from "../../screens/admin/ConsultasVetAdmin";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -215,7 +217,7 @@ function AdminScreen() {
         name="VetAdmin"
         component={VetAdmin}
         options={{
-          title: "Consultas",
+          title: "Veterinários",
           tabBarLabelStyle: {
             fontWeight: "normal",
             fontSize: 12,
@@ -230,7 +232,7 @@ function AdminScreen() {
         name="ClientesAdmin"
         component={ClientesAdmin}
         options={{
-          title: "Perfil",
+          title: "Clientes",
           tabBarLabelStyle: {
             fontWeight: "normal",
             fontSize: 12,
@@ -436,7 +438,7 @@ function AppNavigation() {
           name="ListaAnimaisVet"
           component={ListaAnimaisVet}
           options={({ navigation, route }) => ({
-            title: 'ListaAnimaisVet',
+            title: "ListaAnimaisVet",
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6FC4CF",
@@ -450,7 +452,7 @@ function AppNavigation() {
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('PerfilVet');
+                  navigation.navigate("PerfilVet");
                 }}
               >
                 <Image
@@ -465,7 +467,7 @@ function AppNavigation() {
           name="ListaClientesVet"
           component={ListaClientesVet}
           options={({ navigation, route }) => ({
-            title: 'ListaClientesVet',
+            title: "ListaClientesVet",
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6FC4CF",
@@ -479,7 +481,7 @@ function AppNavigation() {
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('PerfilVet');
+                  navigation.navigate("PerfilVet");
                 }}
               >
                 <Image
@@ -494,7 +496,7 @@ function AppNavigation() {
           name="ListaReceitasVet"
           component={ListaReceitasVet}
           options={({ navigation, route }) => ({
-            title: 'ListaReceitasVet',
+            title: "ListaReceitasVet",
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6FC4CF",
@@ -508,7 +510,7 @@ function AppNavigation() {
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('PerfilVet');
+                  navigation.navigate("PerfilVet");
                 }}
               >
                 <Image
@@ -523,7 +525,7 @@ function AppNavigation() {
           name="EditarPerfilVet"
           component={EditarPerfilVet}
           options={() => ({
-            title: 'EditarPerfilVet',
+            title: "EditarPerfilVet",
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6FC4CF",
@@ -539,10 +541,61 @@ function AppNavigation() {
         <Stack.Screen name="InicioAdmin" component={InicioAdmin} />
         <Stack.Screen name="AdminScreen" component={AdminScreen} />
         <Stack.Screen
-          name="CriarConsultorio"
-          component={CriarConsultorio}
+          name="CriarConsultorioAdmin"
+          component={CriarConsultorioAdmin}
           options={() => ({
             title: "CriarConsultorio",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+          })}
+        />
+        <Stack.Screen
+          name="EditarClienteAdmin"
+          component={EditarClienteAdmin}
+          options={() => ({
+            title: "Editar Cliente",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+          })}
+        />
+        <Stack.Screen
+          name="AdicionarClienteAdmin"
+          component={AdicionarClienteAdmin}
+          options={() => ({
+            title: "Adicionar Cliente",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+          })}
+        />
+        <Stack.Screen
+          name="ConsultasVetAdmin"
+          component={ConsultasVetAdmin}
+          options={() => ({
+            title: "Consultas Admin",
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6FC4CF",
@@ -558,7 +611,6 @@ function AppNavigation() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-
 }
 
 export default AppNavigation;

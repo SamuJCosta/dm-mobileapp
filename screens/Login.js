@@ -39,7 +39,7 @@ export default function Login() {
         navigation.navigate("VetScreen");
       } else if (user.role === 2) {
         // Admin
-        navigation.navigate("CriarConsultorio");
+        navigation.navigate("CriarConsultorioAdmin");
       }
     } else {
       alert("Credenciais inválidas");
