@@ -25,7 +25,7 @@ export default function InicioVet() {
   return (
     <View style={styles.container}>
       <View style={{ width: "80%", height: "65%" }}>
-        <Text style={styles.text}>Seu Calendario</Text>
+        <Text style={styles.text}>Seu Calendário</Text>
         <Calendar
           style={styles.calendar}
           onDayPress={(day) => selecionarDia(day)}

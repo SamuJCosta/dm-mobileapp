@@ -14,7 +14,7 @@ const clientes = [
         email:"vet",
         password: "123456",
         telemovel: 912345678,
-        img: require("../assets/perfil.png"),
+        img: require("../assets/DrPaula.png"),
         role: 1,
     },
     {

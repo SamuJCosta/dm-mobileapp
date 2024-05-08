@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableOpacity, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -32,10 +33,15 @@ import InicioVet from "../../screens/veterinario/InicioVet";
 import ConsultasVet from "../../screens/veterinario/ConsultasVet";
 import PerfilVet from "../../screens/veterinario/PerfilVet";
 import DetalhesDoDia from "../../screens/veterinario/DetalhesDoDia";
+import EditarPerfilVet from "../../screens/veterinario/EditarPerfilVet";
+import ListaAnimaisVet from "../../screens/veterinario/ListaAnimaisVet";
+import ListaClientesVet from "../../screens/veterinario/ListaClientesVet";
+import ListaReceitasVet from "../../screens/veterinario/ListaReceitasVet";
 import CriarConsultorio from "../../screens/admin/CriarConsultorio";
 import InicioAdmin from "../../screens/admin/InicioAdmin";
 import VetAdmin from "../../screens/admin/VetAdmin";
 import ClientesAdmin from "../../screens/admin/ClientesAdmin";
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -414,6 +420,110 @@ function AppNavigation() {
           component={DetalhesDoDia}
           options={({ route }) => ({
             title: `Detalhes do Dia ${route.params.selectedItems}`,
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+          })}
+        />
+        <Stack.Screen
+          name="ListaAnimaisVet"
+          component={ListaAnimaisVet}
+          options={({ navigation, route }) => ({
+            title: 'ListaAnimaisVet',
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('PerfilVet');
+                }}
+              >
+                <Image
+                  source={route.params.selectedItems.img}
+                  style={{ width: 40, height: 40, borderRadius: 20 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="ListaClientesVet"
+          component={ListaClientesVet}
+          options={({ navigation, route }) => ({
+            title: 'ListaClientesVet',
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('PerfilVet');
+                }}
+              >
+                <Image
+                  source={route.params.selectedItems.img}
+                  style={{ width: 40, height: 40, borderRadius: 20 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="ListaReceitasVet"
+          component={ListaReceitasVet}
+          options={({ navigation, route }) => ({
+            title: 'ListaReceitasVet',
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('PerfilVet');
+                }}
+              >
+                <Image
+                  source={route.params.selectedItems.img}
+                  style={{ width: 40, height: 40, borderRadius: 20 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="EditarPerfilVet"
+          component={EditarPerfilVet}
+          options={() => ({
+            title: 'EditarPerfilVet',
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6FC4CF",

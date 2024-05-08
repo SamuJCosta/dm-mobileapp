@@ -63,7 +63,7 @@ export default function PerfilVet() {
           </Pressable>
           <Pressable
             style={styles.categorias}
-            onPress={() => navigation.navigate("MeusAnimais")}
+            onPress={() => navigation.navigate("ListaClientesVet", { selectedItems: cliente })}
           >
             <UsersIcon color={"#000"}/>
             <Text style={styles.animais}>Lista Clientes</Text>
@@ -71,7 +71,7 @@ export default function PerfilVet() {
           </Pressable>
           <Pressable
             style={styles.categorias}
-            onPress={() => navigation.navigate("MinhasConsultas")}
+            onPress={() => navigation.navigate("ListaAnimaisVet", { selectedItems: cliente })}
           >
             <Image source={pata2} style={styles.icon}/>
             <Text style={styles.texto}>Lista Animais</Text>
@@ -79,7 +79,7 @@ export default function PerfilVet() {
           </Pressable>
           <Pressable
             style={styles.categorias}
-            onPress={() => navigation.navigate("MinhasReceitas")}
+            onPress={() => navigation.navigate("ListaReceitasVet", { selectedItems: cliente })}
           >
             <NewspaperIcon color={"#000"} />
             <Text style={styles.texto}>Lista Receitas</Text>
