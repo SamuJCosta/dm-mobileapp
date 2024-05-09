@@ -43,7 +43,7 @@ export default function ListaReceitasVet() {
           <Text style={styles.texto}>Receitas</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("AddReceitasVet")}
+            onPress={() => navigation.navigate("AddReceitasVet", {selectedItems: clientes})}
           >
             <PlusIcon color={"white"} />
             <Text style={styles.buttonText}>Adicionar Cliente</Text>

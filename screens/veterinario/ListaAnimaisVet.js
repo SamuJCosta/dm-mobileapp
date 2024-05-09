@@ -43,7 +43,7 @@ export default function ListaAnimaisVet() {
           <Text style={styles.texto}>Animais</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("AddAnimaisVet")}
+            onPress={() => navigation.navigate("AddAnimaisVet", {selectedItems: clientes})}
           >
             <PlusIcon color={"white"} />
             <Text style={styles.buttonText}>Adicionar Cliente</Text>
