@@ -37,6 +37,12 @@ import EditarPerfilVet from "../../screens/veterinario/EditarPerfilVet";
 import ListaAnimaisVet from "../../screens/veterinario/ListaAnimaisVet";
 import ListaClientesVet from "../../screens/veterinario/ListaClientesVet";
 import ListaReceitasVet from "../../screens/veterinario/ListaReceitasVet";
+import AddAnimaisVet from "../../screens/veterinario/AddAnimaisVet";
+import AddClienteVet from "../../screens/veterinario/AddClienteVet";
+import AddReceitasVet from "../../screens/veterinario/AddReceitasVet";
+import EditarAnimalVet from "../../screens/veterinario/EditarAnimalVet";
+import EditarReceitasVet from "../../screens/veterinario/EditarReceitasVet";
+import EditarClienteVet from "../../screens/veterinario/EditarClienteVet";
 import CriarConsultorioAdmin from "../../screens/admin/CriarConsultorioAdmin";
 import InicioAdmin from "../../screens/admin/InicioAdmin";
 import VetAdmin from "../../screens/admin/VetAdmin";
@@ -45,6 +51,7 @@ import EditarClienteAdmin from "../../screens/admin/EditarClienteAdmin";
 import AdicionarClienteAdmin from "../../screens/admin/AdicionarClienteAdmin";
 import ConsultasVetAdmin from "../../screens/admin/ConsultasVetAdmin";
 import EditarVeterinarioAdmin from "../../screens/admin/EditarVeterinarioAdmin";
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -537,6 +544,180 @@ function AppNavigation() {
             },
             headerTitleAlign: "center",
             headerBackTitleVisible: false,
+          })}
+        />
+        <Stack.Screen
+          name="AddAnimaisVet"
+          component={AddAnimaisVet}
+          options={({ navigation, route }) => ({
+            title: "AddAnimaisVet",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("PerfilVet");
+                }}
+              >
+                <Image
+                  source={route.params.selectedItems.img}
+                  style={{ width: 40, height: 40, borderRadius: 20 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="AddClienteVet"
+          component={AddClienteVet}
+          options={({ navigation, route }) => ({
+            title: "AddClienteVet",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("PerfilVet");
+                }}
+              >
+                <Image
+                  source={route.params.selectedItems.img}
+                  style={{ width: 40, height: 40, borderRadius: 20 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="AddReceitasVet"
+          component={AddReceitasVet}
+          options={({ navigation, route }) => ({
+            title: "AddReceitasVet",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("PerfilVet");
+                }}
+              >
+                <Image
+                  source={route.params.selectedItems.img}
+                  style={{ width: 40, height: 40, borderRadius: 20 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="EditarAnimalVet"
+          component={EditarAnimalVet}
+          options={({ navigation, route }) => ({
+            title: "EditarAnimalVet",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("PerfilVet");
+                }}
+              >
+                <Image
+                  source={route.params.selectedItems.img}
+                  style={{ width: 40, height: 40, borderRadius: 20 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="EditarReceitasVet"
+          component={EditarReceitasVet}
+          options={({ navigation, route }) => ({
+            title: "EditarReceitasVet",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("PerfilVet");
+                }}
+              >
+                <Image
+                  source={route.params.selectedItems.img}
+                  style={{ width: 40, height: 40, borderRadius: 20 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="EditarClienteVet"
+          component={EditarClienteVet}
+          options={({ navigation, route }) => ({
+            title: "EditarClienteVet",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("PerfilVet");
+                }}
+              >
+                <Image
+                  source={route.params.selectedItems.img}
+                  style={{ width: 40, height: 40, borderRadius: 20 }}
+                />
+              </TouchableOpacity>
+            ),
           })}
         />
         <Stack.Screen name="InicioAdmin" component={InicioAdmin} />

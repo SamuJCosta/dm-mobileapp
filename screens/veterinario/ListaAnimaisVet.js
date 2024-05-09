@@ -30,7 +30,7 @@ export default function ListaAnimaisVet() {
       <Pressable onPress={() => console.log("Apagado!")}>
         <TrashIcon color={"gray"} marginTop={10} />
       </Pressable>
-      <Pressable onPress={() => navigation.navigate("EditarCliente")}>
+      <Pressable onPress={() => navigation.navigate("EditarAnimaisVet", {selectedItems: item})}>
         <PencilIcon color={"gray"} marginLeft={40} marginTop={10} />
       </Pressable>
     </View>
@@ -40,10 +40,10 @@ export default function ListaAnimaisVet() {
       <View style={styles.block}>
         <View style={styles.cliente}>
           <UserIcon color={"black"} width={30} height={30} marginTop={15} />
-          <Text style={styles.texto}>Clientes</Text>
+          <Text style={styles.texto}>Animais</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("AdicionarCliente")}
+            onPress={() => navigation.navigate("AddAnimaisVet", {selectedItems: clientes})}
           >
             <PlusIcon color={"white"} />
             <Text style={styles.buttonText}>Adicionar Cliente</Text>
