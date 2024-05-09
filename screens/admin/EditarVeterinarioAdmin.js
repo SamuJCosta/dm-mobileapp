@@ -24,11 +24,11 @@ export default function EditarVeterinarioAdmin() {
             <PencilIcon color={"white"} margin={8} />
           </View>
         </Pressable>
-        <Text style={styles.informacao}>Editar Cliente</Text>
+        <Text style={styles.informacao}>Editar Veterinario</Text>
         <Text style={styles.informacao1}>NOME COMPLETO</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="Quim Roscas"
+            placeholder="Steven"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
@@ -38,7 +38,7 @@ export default function EditarVeterinarioAdmin() {
         <Text style={styles.informacao1}>EMAIL</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="quimroscas@gmail.com"
+            placeholder="steven@gmail.com"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
@@ -48,7 +48,17 @@ export default function EditarVeterinarioAdmin() {
         <Text style={styles.informacao1}>TELEFONE</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="919724489"
+            placeholder="912345678"
+            placeholderTextColor="#6B6E82"
+            fontSize="14"
+            fontWeight="400"
+            style={{ marginLeft: 10 }}
+          />
+        </View>
+        <Text style={styles.informacao1}>Consultorio</Text>
+        <View style={styles.insideBlock}>
+          <TextInput
+            placeholder="Consultório de Santo Tirso"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
@@ -59,7 +69,7 @@ export default function EditarVeterinarioAdmin() {
           style={styles.button}
           onPress={() => navigation.navigate("AdminScreen")}
         >
-          <Text style={styles.buttonText}>EDITAR</Text>
+          <Text style={styles.buttonText}>SALVAR</Text>
         </TouchableOpacity>
       </View>
     </View>

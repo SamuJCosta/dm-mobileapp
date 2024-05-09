@@ -44,6 +44,7 @@ import ClientesAdmin from "../../screens/admin/ClientesAdmin";
 import EditarClienteAdmin from "../../screens/admin/EditarClienteAdmin";
 import AdicionarClienteAdmin from "../../screens/admin/AdicionarClienteAdmin";
 import ConsultasVetAdmin from "../../screens/admin/ConsultasVetAdmin";
+import EditarVeterinarioAdmin from "../../screens/admin/EditarVeterinarioAdmin";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -596,6 +597,23 @@ function AppNavigation() {
           component={ConsultasVetAdmin}
           options={() => ({
             title: "Consultas Admin",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+          })}
+        />
+        <Stack.Screen
+          name="EditarVeterinarioAdmin"
+          component={EditarVeterinarioAdmin}
+          options={() => ({
+            title: "Editar Veterinario",
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6FC4CF",

@@ -30,7 +30,7 @@ export default function VetAdmin() {
           <Pressable onPress={()=> console.log("Apagado!")}>
           <TrashIcon color={"gray"} marginTop={10}/>
           </Pressable>
-          <Pressable onPress={()=> navigation.navigate('EditarClienteAdmin')}>
+          <Pressable onPress={()=> navigation.navigate('EditarVeterinarioAdmin')}>
           <PencilIcon color={"gray"} marginLeft={40} marginTop={10}/>
           </Pressable>
           </View>

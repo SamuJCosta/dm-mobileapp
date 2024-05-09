@@ -59,7 +59,7 @@ export default function EditarClienteAdmin() {
           style={styles.button}
           onPress={() => navigation.navigate("AdminScreen")}
         >
-          <Text style={styles.buttonText}>EDITAR</Text>
+          <Text style={styles.buttonText}>SALVAR</Text>
         </TouchableOpacity>
       </View>
     </View>
