@@ -49,8 +49,8 @@ import VetAdmin from "../../screens/admin/VetAdmin";
 import ClientesAdmin from "../../screens/admin/ClientesAdmin";
 import EditarClienteAdmin from "../../screens/admin/EditarClienteAdmin";
 import AdicionarClienteAdmin from "../../screens/admin/AdicionarClienteAdmin";
-import ConsultasVetAdmin from "../../screens/admin/ConsultasVetAdmin";
 import EditarVeterinarioAdmin from "../../screens/admin/EditarVeterinarioAdmin";
+import AdicionarVetAdmin from "../../screens/admin/AdicionarVetAdmin";
 
 
 const Stack = createNativeStackNavigator();
@@ -774,10 +774,10 @@ function AppNavigation() {
           })}
         />
         <Stack.Screen
-          name="ConsultasVetAdmin"
-          component={ConsultasVetAdmin}
+          name="EditarVeterinarioAdmin"
+          component={EditarVeterinarioAdmin}
           options={() => ({
-            title: "Consultas Admin",
+            title: "Editar Veterinario",
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6FC4CF",
@@ -791,10 +791,10 @@ function AppNavigation() {
           })}
         />
         <Stack.Screen
-          name="EditarVeterinarioAdmin"
-          component={EditarVeterinarioAdmin}
+          name="AdicionarVetAdmin"
+          component={AdicionarVetAdmin}
           options={() => ({
-            title: "Editar Veterinario",
+            title: "Adicionar Veterinario",
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6FC4CF",

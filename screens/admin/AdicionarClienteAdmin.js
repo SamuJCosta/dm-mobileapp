@@ -11,7 +11,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { PencilIcon } from "react-native-heroicons/outline";
 
-export default function AdicionarCliente() {
+export default function AdicionarClienteAdmin() {
   const perfiladmin = require("../../assets/AdminImg.png");
   const navigation = useNavigation();
   

@@ -11,10 +11,10 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { PencilIcon } from "react-native-heroicons/outline";
 
-export default function InicioAdmin() {
+export default function CriarConsultorioAdmin() {
   const perfiladmin = require("../../assets/AdminImg.png");
   const navigation = useNavigation();
-  
+
   return (
     <View style={styles.container}>
       <Image source={perfiladmin} style={styles.img} />
