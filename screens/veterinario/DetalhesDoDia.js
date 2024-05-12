@@ -6,15 +6,6 @@ import consulta from "../../data/consulta";
 export default function DetalhesDoDia({ route }) {
   const selectedItems = route.params.selectedItems;
 
-  renderItem = () => {
-    <View>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-    </View>;
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.box1}>
