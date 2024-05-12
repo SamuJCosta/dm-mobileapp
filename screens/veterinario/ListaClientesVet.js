@@ -30,7 +30,7 @@ export default function ListaClientesVet() {
       <Pressable onPress={() => console.log("Apagado!")}>
         <TrashIcon color={"gray"} marginTop={10} />
       </Pressable>
-      <Pressable onPress={() => navigation.navigate("EditarClientesVet", {selectedItems: item})}>
+      <Pressable onPress={() => navigation.navigate("EditarClientesVet")}>
         <PencilIcon color={"gray"} marginLeft={40} marginTop={10} />
       </Pressable>
     </View>
@@ -43,7 +43,7 @@ export default function ListaClientesVet() {
           <Text style={styles.texto}>Clientes</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("AddClienteVet", {selectedItems: clientes})}
+            onPress={() => navigation.navigate("AddClienteVet")}
           >
             <PlusIcon color={"white"} />
             <Text style={styles.buttonText}>Adicionar Cliente</Text>

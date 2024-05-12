@@ -1,7 +1,5 @@
 import { View, Text, Image, Pressable, StyleSheet, Dimensions } from 'react-native'
 import React from 'react'
-import Carousel from 'react-native-snap-carousel';
-import data from '../../data/data';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -16,9 +14,6 @@ export default function Inicio() {
   const gps= require('../../assets/gps.png');
   const coin= require('../../assets/coin.png');
   
-
-
-
   const { width:screenWidth } = Dimensions.get('window');
 
   const sliderWidth = screenWidth;
@@ -202,13 +197,7 @@ export default function Inicio() {
           <Image source={veterinario} style={{width: 30, height:30}}/>
           <Text style={{fontWeight:"bold", fontSize: 19, marginLeft: 8,marginTop:4}}>Veterinarios</Text>
         </View>
-        <Carousel
-           layout='default'
-           data={data}
-           renderItem={renderItem}
-           sliderWidth={sliderWidth}
-           itemWidth={itemWidth}
-        />
+        
       </View>
     </View>
   )

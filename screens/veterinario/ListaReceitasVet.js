@@ -30,7 +30,7 @@ export default function ListaReceitasVet() {
       <Pressable onPress={() => console.log("Apagado!")}>
         <TrashIcon color={"gray"} marginTop={10} />
       </Pressable>
-      <Pressable onPress={() => navigation.navigate("EditarReceitasVet", {selectedItems: item})}>
+      <Pressable onPress={() => navigation.navigate("EditarReceitasVet")}>
         <PencilIcon color={"gray"} marginLeft={40} marginTop={10} />
       </Pressable>
     </View>
@@ -43,7 +43,7 @@ export default function ListaReceitasVet() {
           <Text style={styles.texto}>Receitas</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("AddReceitasVet", {selectedItems: clientes})}
+            onPress={() => navigation.navigate("AddReceitasVet")}
           >
             <PlusIcon color={"white"} />
             <Text style={styles.buttonText}>Adicionar Cliente</Text>

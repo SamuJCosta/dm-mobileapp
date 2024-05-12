@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "700",
     fontStyle: "normal",
-    width:180
+    width:200
   },
 
   secondView: {

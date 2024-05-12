@@ -30,7 +30,7 @@ export default function ListaAnimaisVet() {
       <Pressable onPress={() => console.log("Apagado!")}>
         <TrashIcon color={"gray"} marginTop={10} />
       </Pressable>
-      <Pressable onPress={() => navigation.navigate("EditarAnimaisVet", {selectedItems: item})}>
+      <Pressable onPress={() => navigation.navigate("EditarAnimaisVet")}>
         <PencilIcon color={"gray"} marginLeft={40} marginTop={10} />
       </Pressable>
     </View>
@@ -43,7 +43,7 @@ export default function ListaAnimaisVet() {
           <Text style={styles.texto}>Animais</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("AddAnimaisVet", {selectedItems: clientes})}
+            onPress={() => navigation.navigate("AddAnimaisVet")}
           >
             <PlusIcon color={"white"} />
             <Text style={styles.buttonText}>Adicionar Cliente</Text>

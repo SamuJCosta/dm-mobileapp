@@ -256,10 +256,7 @@ function AdminScreen() {
 function AppNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="SplashScreen"
-        screenOptions={{ headerShown: false }}
-      >
+      <Stack.Navigator initialRouteName="EditarClienteVet" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="VetScreen" component={VetScreen} />
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -549,7 +546,7 @@ function AppNavigation() {
         <Stack.Screen
           name="AddAnimaisVet"
           component={AddAnimaisVet}
-          options={({ navigation, route }) => ({
+          options={() => ({
             title: "AddAnimaisVet",
             headerShown: true,
             headerStyle: {
@@ -561,24 +558,13 @@ function AppNavigation() {
             },
             headerTitleAlign: "center",
             headerBackTitleVisible: false,
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("PerfilVet");
-                }}
-              >
-                <Image
-                  source={route.params.selectedItems.img}
-                  style={{ width: 40, height: 40, borderRadius: 20 }}
-                />
-              </TouchableOpacity>
-            ),
+
           })}
         />
         <Stack.Screen
           name="AddClienteVet"
           component={AddClienteVet}
-          options={({ navigation, route }) => ({
+          options={() => ({
             title: "AddClienteVet",
             headerShown: true,
             headerStyle: {
@@ -590,24 +576,13 @@ function AppNavigation() {
             },
             headerTitleAlign: "center",
             headerBackTitleVisible: false,
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("PerfilVet");
-                }}
-              >
-                <Image
-                  source={route.params.selectedItems.img}
-                  style={{ width: 40, height: 40, borderRadius: 20 }}
-                />
-              </TouchableOpacity>
-            ),
+           
           })}
         />
         <Stack.Screen
           name="AddReceitasVet"
           component={AddReceitasVet}
-          options={({ navigation, route }) => ({
+          options={() => ({
             title: "AddReceitasVet",
             headerShown: true,
             headerStyle: {
@@ -619,24 +594,13 @@ function AppNavigation() {
             },
             headerTitleAlign: "center",
             headerBackTitleVisible: false,
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("PerfilVet");
-                }}
-              >
-                <Image
-                  source={route.params.selectedItems.img}
-                  style={{ width: 40, height: 40, borderRadius: 20 }}
-                />
-              </TouchableOpacity>
-            ),
+            
           })}
         />
         <Stack.Screen
           name="EditarAnimalVet"
           component={EditarAnimalVet}
-          options={({ navigation, route }) => ({
+          options={() => ({
             title: "EditarAnimalVet",
             headerShown: true,
             headerStyle: {
@@ -648,24 +612,13 @@ function AppNavigation() {
             },
             headerTitleAlign: "center",
             headerBackTitleVisible: false,
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("PerfilVet");
-                }}
-              >
-                <Image
-                  source={route.params.selectedItems.img}
-                  style={{ width: 40, height: 40, borderRadius: 20 }}
-                />
-              </TouchableOpacity>
-            ),
+            
           })}
         />
         <Stack.Screen
           name="EditarReceitasVet"
           component={EditarReceitasVet}
-          options={({ navigation, route }) => ({
+          options={() => ({
             title: "EditarReceitasVet",
             headerShown: true,
             headerStyle: {
@@ -677,24 +630,13 @@ function AppNavigation() {
             },
             headerTitleAlign: "center",
             headerBackTitleVisible: false,
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("PerfilVet");
-                }}
-              >
-                <Image
-                  source={route.params.selectedItems.img}
-                  style={{ width: 40, height: 40, borderRadius: 20 }}
-                />
-              </TouchableOpacity>
-            ),
+           
           })}
         />
         <Stack.Screen
           name="EditarClienteVet"
           component={EditarClienteVet}
-          options={({ navigation, route }) => ({
+          options={() => ({
             title: "EditarClienteVet",
             headerShown: true,
             headerStyle: {
@@ -706,18 +648,7 @@ function AppNavigation() {
             },
             headerTitleAlign: "center",
             headerBackTitleVisible: false,
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("PerfilVet");
-                }}
-              >
-                <Image
-                  source={route.params.selectedItems.img}
-                  style={{ width: 40, height: 40, borderRadius: 20 }}
-                />
-              </TouchableOpacity>
-            ),
+           
           })}
         />
         <Stack.Screen name="InicioAdmin" component={InicioAdmin} />
