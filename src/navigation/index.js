@@ -256,7 +256,7 @@ function AdminScreen() {
 function AppNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="EditarClienteVet" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="AdminScreen" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="VetScreen" component={VetScreen} />
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
