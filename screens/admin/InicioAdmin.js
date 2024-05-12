@@ -35,7 +35,7 @@ export default function InicioAdmin() {
       <TouchableOpacity
         style={styles.button}
         onPress={() =>
-          navigation.navigate("DetalhesDoDia", {
+          navigation.navigate("DetalhesDoDiaAdmin", {
             selectedItems: diaSelecionado,
           })
         }

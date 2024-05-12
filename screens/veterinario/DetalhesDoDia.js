@@ -1,15 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
+import { View, Text, StyleSheet, FlatList, Pressable} from "react-native";
 import { CheckIcon } from "react-native-heroicons/outline";
 import consulta from "../../data/consulta";
 
-export default function DetalhesDoDia({ route }) {
-  const selectedItems = route.params.selectedItems;
+export default function DetalhesDoDia() { 
+ // const selectedItems = route.params.selectedItems; 
 
   return (
     <View style={styles.container}>
       <View style={styles.box1}>
-        <Text style={styles.titulo}>Consultas do dia {selectedItems}</Text>
+        <Text style={styles.titulo}>Consultas do dia </Text>
         <View style={styles.box2}>
           <View style={styles.box3}>
             <Text style={styles.texto1}>Cliente: Jonh Doe</Text>

@@ -45,12 +45,14 @@ import EditarReceitasVet from "../../screens/veterinario/EditarReceitasVet";
 import EditarClienteVet from "../../screens/veterinario/EditarClienteVet";
 import CriarConsultorioAdmin from "../../screens/admin/CriarConsultorioAdmin";
 import InicioAdmin from "../../screens/admin/InicioAdmin";
+import DetalhesDoDiaAdmin from "../../screens/admin/DetalhesDoDiaAdmin";
 import VetAdmin from "../../screens/admin/VetAdmin";
 import ClientesAdmin from "../../screens/admin/ClientesAdmin";
 import EditarClienteAdmin from "../../screens/admin/EditarClienteAdmin";
 import AdicionarClienteAdmin from "../../screens/admin/AdicionarClienteAdmin";
 import EditarVeterinarioAdmin from "../../screens/admin/EditarVeterinarioAdmin";
 import AdicionarVetAdmin from "../../screens/admin/AdicionarVetAdmin";
+import ConsultasVetAdmin from "../../screens/admin/ConsultasVetAdmin";
 
 
 const Stack = createNativeStackNavigator();
@@ -256,7 +258,7 @@ function AdminScreen() {
 function AppNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="AdminScreen" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="DetalhesDoDiaAdmin" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="VetScreen" component={VetScreen} />
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -726,6 +728,40 @@ function AppNavigation() {
           component={AdicionarVetAdmin}
           options={() => ({
             title: "Adicionar Veterinario",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+          })}
+        />
+        <Stack.Screen
+          name="DetalhesDoDiaAdmin"
+          component={DetalhesDoDiaAdmin}
+          options={() => ({
+            title: "Detalhes do Dia",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6FC4CF",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+          })}
+        />
+        <Stack.Screen
+          name="ConsultasVetAdmin"
+          component={ConsultasVetAdmin}
+          options={() => ({
+            title: "Adicionar Cliente",
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6FC4CF",
