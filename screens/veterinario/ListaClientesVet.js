@@ -30,7 +30,7 @@ export default function ListaClientesVet() {
       <Pressable onPress={() => console.log("Apagado!")}>
         <TrashIcon color={"gray"} marginTop={10} />
       </Pressable>
-      <Pressable onPress={() => navigation.navigate("EditarClientesVet")}>
+      <Pressable onPress={() => navigation.navigate("EditarClienteVet")}>
         <PencilIcon color={"gray"} marginLeft={40} marginTop={10} />
       </Pressable>
     </View>

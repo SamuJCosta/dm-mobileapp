@@ -46,7 +46,7 @@ export default function ListaReceitasVet() {
             onPress={() => navigation.navigate("AddReceitasVet")}
           >
             <PlusIcon color={"white"} />
-            <Text style={styles.buttonText}>Adicionar Cliente</Text>
+            <Text style={styles.buttonText}>Adicionar Receita</Text>
           </TouchableOpacity>
         </View>
         <FlatList data={clientes} renderItem={renderItem} />
