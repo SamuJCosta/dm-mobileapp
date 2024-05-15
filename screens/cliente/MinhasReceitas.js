@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import { ArrowDownTrayIcon } from 'react-native-heroicons/outline'
+import GeneratePDF from '../../src/components/GeneratePDF'
+import consulta from '../../data/consulta'
 
 const MinhasReceitas = () => {
     return (
@@ -13,9 +15,12 @@ const MinhasReceitas = () => {
                     <Text style={styles.infos}>
                         Aqui pode descarregar a receita de 24 de Janeiro
                     </Text>
-                    <Pressable onPress={()=> console.log("Download")}>
-                    <ArrowDownTrayIcon style={styles.icon}/>
-                    </Pressable>
+                    <GeneratePDF
+                        styles={styles}
+                        tipo={consulta[0].tipo}
+                        nomeAnimal="Kika"
+                        data="24 de Janeiro"
+                    />
                 </View>
                 <View style={styles.informacoes}>
                     <Text style={styles.infos}>
