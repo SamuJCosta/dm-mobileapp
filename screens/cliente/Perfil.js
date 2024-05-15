@@ -35,7 +35,7 @@ export default function Perfil() {
             <Text style={styles.personname}>{cliente.nome}</Text>
             <TouchableOpacity
               style={{ flexDirection: "row", marginLeft: 45, columnGap: 8 }}
-              onPress={() => console.log("Saiu")}
+              onPress={() => navigation.navigate("SplashScreen")}
             >
               <ArrowLeftEndOnRectangleIcon color={"red"} />
               <Text style={styles.sair}>Sair</Text>
