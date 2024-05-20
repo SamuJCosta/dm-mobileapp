@@ -17,9 +17,7 @@ const MinhasReceitas = () => {
                     </Text>
                     <GeneratePDF
                         styles={styles}
-                        tipo={consulta[0].tipo}
-                        nomeAnimal="Kika"
-                        data="24 de Janeiro"
+                        data={consulta[0]}
                     />
                 </View>
                 <View style={styles.informacoes}>
