@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -57,6 +57,8 @@ import ConsultasVetAdmin from "../../screens/admin/ConsultasVetAdmin";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const [user, setUser]= useState(null);
 
 function HomeScreen() {
   return (
@@ -258,7 +260,7 @@ function AdminScreen() {
 function AppNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="MinhasReceitas" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="SplashScreen" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="VetScreen" component={VetScreen} />
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
