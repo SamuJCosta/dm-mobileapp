@@ -3,11 +3,11 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
   Image,
   TouchableOpacity,
   Pressable,
   Keyboard,
+  Alert,
 } from "react-native";
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
@@ -27,12 +27,32 @@ export default function Registo() {
   const appleicon = require("../assets/appleicon.png");
   const navigation = useNavigation();
 
-  const[email,setEmail]=useState("");
-  const[password,setPassword]=useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      Alert.alert("Erro", "As senhas não correspondem.");
+      return;
+    }
+
+    
     const auth = getAuth();
-  }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      await sendEmailVerification(user);
+      Alert.alert("Sucesso", "Verifique seu e-mail para confirmar a conta.");
+      navigation.navigate("Login");
+    } catch (error) {
+      Alert.alert("Erro", error.message);
+    }
+  };
 
   return (
     <Pressable style={styles.container} onPress={Keyboard.dismiss}>
@@ -44,27 +64,32 @@ export default function Registo() {
           <ChevronLeftIcon style={{ width: 10, height: 10 }} color="#5E616F" />
         </TouchableOpacity>
       </View>
-      <Images link={eclipse} style={styles.imageStyleEclipse} />
-      <Images link={logoImg} style={styles.imageStyleLogo} />
+      <Image source={eclipse} style={styles.imageStyleEclipse} />
+      <Image source={logoImg} style={styles.imageStyleLogo} />
       <InputWithIcon
         style={styles.input}
         placeholder="Email"
         iconColor="#A6A6A6"
+        onChangeText={setEmail}
+        value={email}
       />
       <InputWithIcon
         style={styles.input}
         placeholder="Palavra-passe"
         iconColor="#A6A6A6"
+        onChangeText={setPassword}
+        value={password}
       />
       <InputWithIcon
         style={styles.input}
         placeholder="Verifique Palavra-passe"
         iconColor="#A6A6A6"
+        onChangeText={setConfirmPassword}
+        value={confirmPassword}
       />
-      <CustomButton
-        text={"Registar"}
-        action={() => console.log("Button was pressed!")}
-      />
+      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+        <Text style={styles.buttonText}>Registar</Text>
+      </TouchableOpacity>
       <Text style={styles.text}>ou entrar com</Text>
       <TouchableOpacity style={styles.buttonRegisto}>
         <View style={styles.viewRegisto}>
@@ -124,7 +149,7 @@ const styles = StyleSheet.create({
   backButton: {
     position: "absolute",
     top: 60,
-    left: -190, // Adjust this value as needed
+    left: -190,
     padding: 10,
     borderRadius: 999,
     backgroundColor: "#6FC4CF",
@@ -135,7 +160,7 @@ const styles = StyleSheet.create({
   textInput: {
     fontSize: 20,
     fontStyle: "normal",
-    fontWeight: 500,
+    fontWeight: "500",
     lineHeight: "normal",
   },
   viewRegisto: {
@@ -209,21 +234,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
-
-const Images = ({ link, style }) => {
-  return <Image source={link} style={style} />;
-};
-
-const InputBtn = ({ style, placeholder, color, border }) => {
-  return (
-    <TextInput
-      style={style}
-      placeholder={placeholder}
-      placeholderTextColor={color}
-      borderWidth={border}
-    ></TextInput>
-  );
-};
 
 const CustomButton = ({ text, action }) => {
   return (

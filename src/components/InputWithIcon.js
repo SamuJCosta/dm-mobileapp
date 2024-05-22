@@ -25,7 +25,7 @@ const InputWithIcon = ({ placeholder, iconColor, onChangeText, value, ...props }
           <TextInput
               placeholder={placeholder}
               placeholderTextColor="#8D8D8D"
-              onChangeText={onChangeText} 
+              onChangeText={onChangeText}
               value={value}
               {...props}
           />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { TouchableOpacity, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -58,7 +58,6 @@ import ConsultasVetAdmin from "../../screens/admin/ConsultasVetAdmin";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const [user, setUser]= useState(null);
 
 function HomeScreen() {
   return (

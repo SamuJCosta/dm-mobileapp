@@ -7,11 +7,20 @@ import {
   TouchableOpacity,
   Pressable,
   Keyboard,
+  Alert
 } from "react-native";
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import InputWithIcon from "../src/components/InputWithIcon";
-import clientes from "../data/clientes"; // Importe o array de clientes
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInAnonymously,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { app } from "../config/firebase.config";
 
 export default function Login() {
   const logoImg = require("../assets/logo.png");
@@ -25,26 +34,24 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    const user = clientes.find(
-      (cliente) => cliente.email === email && cliente.password === password
-    );
-
-    if (user) {
-      if (user.role === 0) {
-        // Cliente
-        navigation.navigate("HomeScreen");
-      } else if (user.role === 1) {
-        // Veterinário
-        navigation.navigate("VetScreen");
-      } else if (user.role === 2) {
-        // Admin
-        navigation.navigate("CriarConsultorioAdmin");
+  const handleSignIn = async () => {
+    try {
+      const auth = getAuth(app);
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+      await auth.currentUser.reload();
+      const user = userCred.user;
+      if (user) {
+        navigation.navigate("HomeScreen", { screen: "Inicio" });
       }
-    } else {
-      alert("Credenciais inválidas");
+    } catch (error) {
+      const errCode = error.code;
+      const errMessage = error.message;
+      if (errCode === "auth/invalid-credential") {
+        console.log("Invalid Credential");
+      }
     }
   };
+  
 
   return (
     <Pressable style={styles.container} onPress={Keyboard.dismiss}>
@@ -78,7 +85,9 @@ export default function Login() {
       >
         Esqueceu-se da Palavra-passe?
       </Text>
-      <CustomButton text={"Login"} action={handleLogin} />
+      <TouchableOpacity style={styles.button} onPress={handleSignIn}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
       <Text style={styles.text}>ou entrar com</Text>
       <TouchableOpacity style={styles.buttonRegisto}>
         <View style={styles.viewRegisto}>
@@ -222,10 +231,4 @@ const styles = StyleSheet.create({
 const Images = ({ link, style }) => {
   return <Image source={link} style={style} />;
 };
-const CustomButton = ({ text, action }) => {
-  return (
-    <TouchableOpacity style={styles.button} onPress={action}>
-      <Text style={styles.buttonText}>{text}</Text>
-    </TouchableOpacity>
-  );
-};
+
