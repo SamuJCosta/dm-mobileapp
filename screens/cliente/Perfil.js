@@ -17,12 +17,22 @@ import {
   ArrowLeftEndOnRectangleIcon,
 } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
+import {auth} from "../../config/firebase.config"; 
 import clientes from "../../data/clientes";
 
 export default function Perfil() {
   const navigation = useNavigation();
   const perfil = require("../../assets/perfil.png");
   const pata2 = require("../../assets/pata2.png");
+
+  function logout() {
+    auth.signOut().then(() => {
+      console.log('Utilizador Logout');
+      navigation.replace('Login');
+    }).catch((error) => {
+      console.error('Erro durante o logout: ', error);
+    });
+  }
 
   const cliente = clientes[0];
 
@@ -35,7 +45,7 @@ export default function Perfil() {
             <Text style={styles.personname}>{cliente.nome}</Text>
             <TouchableOpacity
               style={{ flexDirection: "row", marginLeft: 45, columnGap: 8 }}
-              onPress={() => navigation.navigate("SplashScreen")}
+              onPress={logout}
             >
               <ArrowLeftEndOnRectangleIcon color={"red"} />
               <Text style={styles.sair}>Sair</Text>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   View,
@@ -10,11 +10,33 @@ import {
   Pressable,
 } from "react-native";
 import { PencilIcon } from "react-native-heroicons/outline";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../config/firebase.config";
+
 
 export default function EditarPerfil({ route }) {
   const perfil = require("../../assets/perfil.png");
   const cliente = route.params.selectedItems;
   const navigation = useNavigation();
+
+  const [nome, setNome] = useState(cliente.nome);
+  const [email, setEmail] = useState(cliente.email);
+  const [telemovel, setTelemovel] = useState(cliente.telemovel.toString());
+
+  const handleSave = async () => {
+    try {
+      const clienteRef = doc(db, "users", cliente.id); // Use o ID correto do documento
+      await updateDoc(clienteRef, {
+        nome: nome,
+        email: email,
+        telemovel: telemovel,
+      });
+      console.log("Dados atualizados com sucesso!");
+      navigation.navigate("Perfil");
+    } catch (error) {
+      console.error("Erro ao atualizar os dados: ", error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -33,6 +55,8 @@ export default function EditarPerfil({ route }) {
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            onChangeText={setNome}
+            value={nome}
           />
         </View>
         <Text style={styles.informacoes}>EMAIL</Text>
@@ -43,6 +67,8 @@ export default function EditarPerfil({ route }) {
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            onChangeText={setEmail}
+            value={email}
           />
         </View>
         <Text style={styles.informacoes}>TELEFONE</Text>
@@ -53,11 +79,13 @@ export default function EditarPerfil({ route }) {
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            onChangeText={setTelemovel}
+            value={telemovel}
           />
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Perfil")}
+          onPress={handleSave}
         >
           <Text style={styles.buttonText}>SALVAR</Text>
         </TouchableOpacity>
