@@ -38,8 +38,8 @@ export default function Login() {
       const user = userCred.user;
       if (user) {
         //navigation.navigate("HomeScreen", { screen: "Inicio" });
-        navigation.navigate("VetScreen", { screen: "InicioVet" });
-        //navigation.navigate("AdminScreen", { screen: "InicioAdmin" });
+        //navigation.navigate("VetScreen", { screen: "InicioVet" });
+        navigation.navigate("CriarConsultorioAdmin");
       }
     } catch (error) {
       const errCode = error.code;

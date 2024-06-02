@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,11 +10,43 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { PencilIcon } from "react-native-heroicons/outline";
+import { collection, addDoc } from "firebase/firestore"; 
+import { getAuth } from "firebase/auth";
+import { db } from "../../config/firebase.config";
 
 export default function AdicionarVetAdmin() {
-  const perfiladmin = require("../../assets/AdminImg.png");
-  const navigation = useNavigation();
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [numero, setNumero] = useState("");
+    const [consultorio, setConsultorio] = useState("");
+    const [password, setPassword] = useState("");
   
+    const perfiladmin = require("../../assets/AdminImg.png");
+    const navigation = useNavigation();
+  
+    const AddVetAdmin = async () => {
+      try {
+        const auth = getAuth(); 
+        const user = auth.currentUser;
+  
+        if (user) { 
+          const docRef = await addDoc(collection(db, "veterinario"), {
+            email: email,
+            nome: nome,
+            password: password,
+            consultorio: consultorio,
+            numero: numero,
+          });
+          console.log("Veterinario adicionado com ID: ", docRef.id);
+          navigation.navigate("AdminScreen");
+        } else {
+          console.error("Usuário não autenticado.");
+        }
+      } catch (e) {
+        console.error("Erro ao adicionar veterinario: ", e);
+      }
+    };
+
   return (
     <View style={styles.container}>
       <Image source={perfiladmin} style={styles.img} />
@@ -28,48 +60,68 @@ export default function AdicionarVetAdmin() {
         <Text style={styles.informacao1}>NOME COMPLETO</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="DeolindaKimzimba"
+            placeholder="Nome Completo"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={nome}
+            onChangeText={setNome}
           />
         </View>
         <Text style={styles.informacao1}>EMAIL</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="deolinda@gmail.com"
+            placeholder="Email"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={email}
+            onChangeText={setEmail}
           />
         </View>
         <Text style={styles.informacao1}>TELEFONE</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="912345678"
+            placeholder="Numero"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={numero}
+            onChangeText={setNumero}
           />
         </View>
         <Text style={styles.informacao1}>Consultorio</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="Consultório de Penafiel"
+            placeholder="Consultório"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={consultorio}
+            onChangeText={setConsultorio}
+          />
+        </View>
+        <Text style={styles.informacao1}>PASSWORD</Text>
+        <View style={styles.insideBlock}>
+          <TextInput
+            placeholder="Password"
+            placeholderTextColor="#6B6E82"
+            fontSize="14"
+            fontWeight="400"
+            style={{ marginLeft: 10 }}
+            value={numero}
+            onChangeText={setPassword}
           />
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("AdminScreen")}
+          onPress={AddVetAdmin}
         >
-          <Text style={styles.buttonText}>SALVAR</Text>
+          <Text style={styles.buttonText}>ADICIONAR</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -119,8 +171,8 @@ const styles = StyleSheet.create({
   },
   insideBlock: {
     width: 327,
-    height: 56,
-    marginTop: 10,
+    height: 50,
+    marginTop: 5,
     backgroundColor: "#F0F5FA",
     borderRadius: 10,
     marginLeft: 3,
@@ -130,14 +182,14 @@ const styles = StyleSheet.create({
   button: {
     display: "flex",
     width: 300,
-    height: 60,
+    height: 40,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
     flexShrink: 0,
     borderRadius: 10,
     backgroundColor: "#6FC4CF",
-    marginTop: 20,
+    marginTop: 5,
   },
   buttonText: {
     color: "#fff",

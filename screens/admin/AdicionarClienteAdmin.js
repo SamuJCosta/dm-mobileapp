@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,11 +10,41 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { PencilIcon } from "react-native-heroicons/outline";
+import { collection, addDoc } from "firebase/firestore"; 
+import { getAuth } from "firebase/auth"; // Importar autenticação do Firebase
+import { db } from "../../config/firebase.config";
 
-export default function AdicionarClienteAdmin() {
+export default function AddClienteAdmin() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [numero, setNumero] = useState("");
+  const [password, setPassword] = useState("");
+
   const perfiladmin = require("../../assets/AdminImg.png");
   const navigation = useNavigation();
-  
+
+  const AddClienteAdmin = async () => {
+    try {
+      const auth = getAuth(); // Obter a instância de autenticação
+      const user = auth.currentUser;
+
+      if (user) { // Verificar se o usuário está autenticado
+        const docRef = await addDoc(collection(db, "clientes"), {
+          email: email,
+          nome: nome,
+          password: password,
+          numero: numero,
+        });
+        console.log("Cliente adicionado com ID: ", docRef.id);
+        navigation.navigate("AdminScreen");
+      } else {
+        console.error("Usuário não autenticado.");
+      }
+    } catch (e) {
+      console.error("Erro ao adicionar cliente: ", e);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Image source={perfiladmin} style={styles.img} />
@@ -28,36 +58,54 @@ export default function AdicionarClienteAdmin() {
         <Text style={styles.informacao1}>NOME COMPLETO</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="Quim Roscas"
+            placeholder="Nome Completo"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={nome}
+            onChangeText={setNome}
           />
         </View>
         <Text style={styles.informacao1}>EMAIL</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="quimroscas@gmail.com"
+            placeholder="Email"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={email}
+            onChangeText={setEmail}
           />
         </View>
         <Text style={styles.informacao1}>TELEFONE</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="919724489"
+            placeholder="Telefone"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={numero}
+            onChangeText={setNumero}
+          />
+        </View>
+        <Text style={styles.informacao1}>PASSWORD</Text>
+        <View style={styles.insideBlock}>
+          <TextInput
+            placeholder="Password"
+            placeholderTextColor="#6B6E82"
+            fontSize="14"
+            fontWeight="400"
+            style={{ marginLeft: 10 }}
+            value={password}
+            onChangeText={setPassword}
           />
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("AdminScreen")}
+          onPress={AddClienteAdmin}
         >
           <Text style={styles.buttonText}>ADICIONAR</Text>
         </TouchableOpacity>
@@ -95,7 +143,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
     color: "#141415",
-    marginTop:25,
+    marginTop: 25,
     alignSelf: "flex-start",
     marginLeft: 63,
   },
@@ -103,7 +151,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "400",
     color: "#141415",
-    marginTop: 20,
+    marginTop: 3,
     alignSelf: "flex-start",
     marginLeft: 63,
   },
@@ -116,7 +164,6 @@ const styles = StyleSheet.create({
     marginLeft: 3,
     justifyContent: "center",
   },
-
   button: {
     display: "flex",
     width: 300,

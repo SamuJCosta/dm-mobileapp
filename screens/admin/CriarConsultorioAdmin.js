@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,11 +10,40 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { PencilIcon } from "react-native-heroicons/outline";
+import { collection, addDoc } from "firebase/firestore"; 
+import { getAuth } from "firebase/auth";
+import { db } from "../../config/firebase.config";
 
 export default function CriarConsultorioAdmin() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [numero, setNumero] = useState("");
+  const [localizacao, setLocalizacao] = useState("");
+
   const perfiladmin = require("../../assets/AdminImg.png");
   const navigation = useNavigation();
 
+  const AddConsultorioAdmin = async () => {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (user) {
+        const docRef = await addDoc(collection(db, "consultorio"), {
+          email: email,
+          nome: nome,
+          numero: numero,
+          localizacao: localizacao,
+        });
+        console.log("Consultorio adicionado com ID: ", docRef.id);
+        navigation.navigate("AdminScreen");
+      } else {
+        console.error("Usuário não autenticado.");
+      }
+    } catch (e) {
+      console.error("Erro ao adicionar consultorio: ", e);
+    }
+  };
   return (
     <View style={styles.container}>
       <Image source={perfiladmin} style={styles.img} />
@@ -27,47 +56,52 @@ export default function CriarConsultorioAdmin() {
         <Text style={styles.informacao}>NOME CONSULTÓRIO</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="Consultório Mata Real"
+            placeholder="Nome Consultório"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={nome}
+            onChangeText={setNome}
           />
         </View>
         <Text style={styles.informacao}>EMAIL</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="admin@gmail.com"
+            placeholder="Email"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={email}
+            onChangeText={setEmail}
           />
         </View>
         <Text style={styles.informacao}>TELEFONE</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="919724489"
+            placeholder="Número"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={numero}
+            onChangeText={setNumero}
           />
         </View>
         <Text style={styles.informacao}>LOCALIZAÇÃO</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder="Rua São João da Poeira, N40, Porto"
+            placeholder="Localização"
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={localizacao}
+            onChangeText={setLocalizacao}
           />
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("AdminScreen")}
-        >
+        <TouchableOpacity style={styles.button} onPress={AddConsultorioAdmin}>
           <Text style={styles.buttonText}>CRIAR</Text>
         </TouchableOpacity>
       </View>
