@@ -16,15 +16,61 @@ import {
   ArrowLeftEndOnRectangleIcon,
   UsersIcon,
 } from "react-native-heroicons/outline";
-import { useNavigation } from "@react-navigation/native";
-import clientes from "../../data/clientes";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import {auth, db} from "../../config/firebase.config"; 
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import React, { useCallback , useState } from "react";
 
 export default function PerfilVet() {
   const navigation = useNavigation();
   const perfil = require("../../assets/DrPaula.png");
   const pata2 = require("../../assets/pata2.png");
+  const [cliente, setCliente] = useState(null);
 
-  const cliente = clientes[1];
+
+  const fetchCliente = async (user) => {
+    if (user) {
+      try {
+        const clienteDoc = await getDoc(doc(db, "clientes", user.uid));
+        if (clienteDoc.exists()) {
+          setCliente(clienteDoc.data());
+        } else {
+          console.log('No such document!');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar informações do cliente:', error);
+      }
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        fetchCliente(user);
+      });
+      return () => unsubscribe();
+    }, [])
+  );
+
+
+  function logout() {
+    auth.signOut().then(() => {
+      console.log('Utilizador Logout');
+      navigation.replace('Login');
+    }).catch((error) => {
+      console.error('Erro durante o logout: ', error);
+    });
+  }
+
+
+  if (!cliente) {
+    return (
+      <View style={styles.container}>
+        <Text>A Carregar...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -47,7 +93,7 @@ export default function PerfilVet() {
           </View>
           <View style={styles.thirdView}>
             <PhoneIcon color={"#000"} size={22} />
-            <Text style={styles.texto}>{cliente.telemovel}</Text>
+            <Text style={styles.texto}>{cliente.telefone}</Text>
           </View>
         </View>
         <View style={styles.insideBlock2}>

@@ -21,8 +21,6 @@ import {auth, db} from "../../config/firebase.config";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
-import clientes from "../../data/clientes";
-
 export default function Perfil() {
   const navigation = useNavigation();
   const [cliente, setCliente] = useState(null);
@@ -50,8 +48,7 @@ export default function Perfil() {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
         fetchCliente(user);
       });
-
-      return () => unsubscribe(); // Clean up subscription on unmount
+      return () => unsubscribe();
     }, [])
   );
 
@@ -69,7 +66,7 @@ export default function Perfil() {
   if (!cliente) {
     return (
       <View style={styles.container}>
-        <Text>Carregando...</Text>
+        <Text>A Carregar...</Text>
       </View>
     );
   }

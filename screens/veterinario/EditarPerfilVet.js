@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   View,
@@ -10,11 +10,40 @@ import {
   Pressable,
 } from "react-native";
 import { PencilIcon } from "react-native-heroicons/outline";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../config/firebase.config";
+import { getAuth } from "firebase/auth";
 
 export default function EditarPerfilVet( {route} ) {
   const perfil = require("../../assets/DrPaula.png");
   const cliente = route.params.selectedItems;
   const navigation = useNavigation();
+  const [nome, setNome] = useState(cliente.nome);
+  const [email, setEmail] = useState(cliente.email);
+  const [telefone, setTelefone] = useState(cliente.telefone);
+
+
+  const handleSave = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      try {
+        const clienteRef = doc(db, "clientes", user.uid); 
+        await updateDoc(clienteRef, {
+          nome: nome,
+          email: email,
+          telefone: telefone,
+        });
+        console.log("Dados atualizados com sucesso!");
+        navigation.navigate("PerfilVet");
+      } catch (error) {
+        console.error("Erro ao atualizar os dados: ", error);
+      }
+    } else {
+      console.log("Usuário não autenticado!");
+    }
+  };
 
   return (
     
@@ -34,6 +63,8 @@ export default function EditarPerfilVet( {route} ) {
             fontSize="14"
             fontWeight="400"
             style={{marginLeft: 10}}
+            onChangeText={setNome}
+            value={nome}
           />
         </View>
         <Text style={styles.informacoes}>EMAIL</Text>
@@ -44,21 +75,25 @@ export default function EditarPerfilVet( {route} ) {
             fontSize="14"
             fontWeight="400"
             style={{marginLeft: 10}}
+            onChangeText={setEmail}
+            value={email}
           />
         </View>
         <Text style={styles.informacoes}>TELEFONE</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder={cliente.telemovel.toString()}
+            placeholder={cliente.telemovel}
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{marginLeft: 10}}
+            onChangeText={setTelefone}
+            value={telefone}
           />
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Perfil")}
+          onPress={handleSave}
         >
           <Text style={styles.buttonText}>SALVAR</Text>
         </TouchableOpacity>

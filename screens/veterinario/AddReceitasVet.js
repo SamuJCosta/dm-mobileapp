@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -11,12 +11,57 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { PlusIcon } from "react-native-heroicons/outline";
 import { Dropdown } from "react-native-element-dropdown";
-import clientes from "../../data/clientes";
+import { collection, addDoc, getDocs } from "firebase/firestore"; 
+import { db } from "../../config/firebase.config";
 
 export default function AddReceitasVet() {
   const [selectedValue, setSelectedValue] = useState(null);
+  const [medicamento, setMedicamento] = useState("");
+  const [quantidade, setQuantidade] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [consulta, setConsulta] = useState(null);
 
   const navigation = useNavigation();
+
+  const fetchConsulta = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "consulta"));
+      const consultaData = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        idCliente: doc.idCliente,
+        idVeterinario: doc.idVeterinario,
+      }));
+      setConsulta(consultaData);
+    } catch (e) {
+      console.error("Erro ao buscar consulta: ", e);
+    }
+  };
+
+  useEffect(() => {
+    fetchConsulta();
+    console.log(consulta);
+  }, []);
+
+  const addReceita = async () => {
+    if (!selectedValue) {
+      console.error("Por favor, selecione uma consulta antes de adicionar a receita.");
+      return;
+    }
+  
+    try {
+      const docRef = await addDoc(collection(db, "receita"), {
+        descricao: descricao,
+        medicamento: medicamento,
+        preco: "",
+        quantidade: quantidade, 
+        idConsulta: selectedValue,
+      });
+      console.log("Receita adicionada com ID: ", docRef.id);
+      navigation.navigate("VetScreen");
+    } catch (e) {
+      console.error("Erro ao adicionar a receita: ", e);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -27,12 +72,14 @@ export default function AddReceitasVet() {
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
           iconStyle={styles.iconStyle}
-          data={clientes}
+          data={consulta}
           labelField="nome"
           valueField="id"
-          placeholder="Selecione o Animal"
+          placeholder="Selecione a consulta"
           value={selectedValue}
-          onChange={(item) => setSelectedValue(item.value)}
+          onChange={(item) => {
+            setSelectedValue(item.id);
+          }}        
         />
       </View>
       <View style={{ flexDirection: "row" }}>
@@ -40,45 +87,51 @@ export default function AddReceitasVet() {
           <TextInput
             placeholder="Medicamentos"
             placeholderTextColor="#6B6E82"
-            fontSize="14"
+            fontSize={14}
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={medicamento}
+            onChangeText={setMedicamento}
           />
-          <Pressable onPress={()=>console.log("plus")}>
-            <PlusIcon color={"#000"}/>
-          </Pressable>
+          <View style={{ marginLeft: 10 }}>
+            <Pressable onPress={()=>console.log("plus")}>
+              <PlusIcon color={"#000"}/>
+            </Pressable>
+          </View>
         </View>
         <View style={styles.insideBlock3}>
           <TextInput
-            placeholder="1"
+            placeholder="Quantidade"
             placeholderTextColor="#6B6E82"
-            fontSize="14"
+            fontSize={14}
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={quantidade}
+            onChangeText={setQuantidade}
           />
         </View>
-        
       </View>
       <View style={styles.insideBlock4}>
-            <TextInput
-              placeholder="Descrição"
-              placeholderTextColor="#6B6E82"
-              fontSize="14"
-              fontWeight="400"
-              style={{ marginLeft: 10, marginTop:15 }}
-            />
-          </View>
+        <TextInput
+          placeholder="Descrição"
+          placeholderTextColor="#6B6E82"
+          fontSize={14}
+          fontWeight="400"
+          style={{ marginLeft: 10, marginTop: 15 }}
+          value={descricao}
+          onChangeText={setDescricao}
+        />
+      </View>
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate("VetScreen")}
+        onPress={addReceita}
       >
         <Text style={styles.buttonText}>ADICIONAR</Text>
       </TouchableOpacity>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

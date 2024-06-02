@@ -47,10 +47,15 @@ export default function AddAnimaisVet() {
 
   useEffect(() => {
     fetchClientes();
-  }, []);
+    //console.log(clientes);
+  }, []);
 
-  // Função para adicionar um animal ao Firestore
   const addAnimal = async () => {
+    if (!selectedValue) {
+      console.error("Por favor, selecione um cliente antes de adicionar o animal.");
+      return;
+    }
+  
     try {
       const docRef = await addDoc(collection(db, "animal"), {
         nome : nome,
@@ -60,7 +65,7 @@ export default function AddAnimaisVet() {
         cor: cor,
         tamanho: tamanho, 
         peso: peso,
-        descricao: descricao,
+        descricao: "descricao",
         clienteId : selectedValue,
       });
       console.log("Animal adicionado com ID: ", docRef.id);
@@ -69,14 +74,15 @@ export default function AddAnimaisVet() {
       console.error("Erro ao adicionar animal: ", e);
     }
   };
+  
 
   if (!clientes) {
     return (
       <View style={styles.container}>
         <Text>Carregando...</Text>
       </View>
-    );
-  }
+    );
+  }
   return (
     <View style={styles.container}>
       <Image source={perfiladmin} style={styles.img} />
@@ -179,8 +185,11 @@ export default function AddAnimaisVet() {
             valueField="id"
             placeholder="Selecione o cliente"
             value={selectedValue}
-            onChange={(item) => setSelectedValue(item.value)}
-          />
+            onChange={(item) => {
+              console.log("Item selecionado:", item);
+              setSelectedValue(item.id);
+            }}
+            />
         </View>
         <TouchableOpacity
           style={styles.button}
