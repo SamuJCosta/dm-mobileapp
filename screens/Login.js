@@ -37,8 +37,8 @@ export default function Login() {
       await auth.currentUser.reload();
       const user = userCred.user;
       if (user) {
-        navigation.navigate("HomeScreen", { screen: "Inicio" });
-        //navigation.navigate("VetScreen", { screen: "InicioVet" });
+        //navigation.navigate("HomeScreen", { screen: "Inicio" });
+        navigation.navigate("VetScreen", { screen: "InicioVet" });
         //navigation.navigate("AdminScreen", { screen: "InicioAdmin" });
       }
     } catch (error) {

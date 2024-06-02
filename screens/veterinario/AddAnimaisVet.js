@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -7,19 +7,76 @@ import {
   Pressable,
   TextInput,
   TouchableOpacity,
-  
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { PencilIcon } from "react-native-heroicons/outline";
 import { Dropdown } from 'react-native-element-dropdown';
-import clientes from "../../data/clientes";
+import { collection, addDoc, getDocs } from "firebase/firestore"; 
+import { db } from "../../config/firebase.config";
 
 export default function AddAnimaisVet() {
-    const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [nome, setNome] = useState("");
+  const [alcunha, setAlcunha] = useState("");
+  const [genero, setGenero] = useState("");
+  const [idade, setIdade] = useState("");
+  const [cor, setCor] = useState("");
+  const [tamanho, setTamanho] = useState("");
+  const [peso, setPeso] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [clientes, setClientes] = useState([]);
 
-    const perfiladmin = require("../../assets/AdminImg.png");
-    const navigation = useNavigation();
+  
 
+  const perfiladmin = require("../../assets/AdminImg.png");
+  const navigation = useNavigation();
+  
+  const fetchClientes = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "clientes"));
+      const clientesData = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        nome: doc.data().nome 
+      }));
+      setClientes(clientesData);
+    } catch (e) {
+      console.error("Erro ao buscar clientes: ", e);
+    }
+  };
+  
+
+  useEffect(() => {
+    fetchClientes();
+  }, []);
+
+  // Função para adicionar um animal ao Firestore
+  const addAnimal = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "animal"), {
+        nome : nome,
+        alcunha : alcunha,
+        genero: genero,
+        idade: idade, 
+        cor: cor,
+        tamanho: tamanho, 
+        peso: peso,
+        descricao: descricao,
+        clienteId : selectedValue,
+      });
+      console.log("Animal adicionado com ID: ", docRef.id);
+      navigation.navigate("VetScreen");
+    } catch (e) {
+      console.error("Erro ao adicionar animal: ", e);
+    }
+  };
+
+  if (!clientes) {
+    return (
+      <View style={styles.container}>
+        <Text>Carregando...</Text>
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <Image source={perfiladmin} style={styles.img} />
@@ -37,6 +94,8 @@ export default function AddAnimaisVet() {
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={nome}
+            onChangeText={setNome}
           />
         </View>
         <View style={styles.insideBlock}>
@@ -46,74 +105,86 @@ export default function AddAnimaisVet() {
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
+            value={alcunha}
+            onChangeText={setAlcunha}
           />
         </View>
-        <View style={{flexDirection:"row"}}>
-            <View style={styles.insideBlock3}>
-                <TextInput
-                    placeholder="Género"
-                    placeholderTextColor="#6B6E82"
-                    fontSize="14"
-                    fontWeight="400"
-                    style={{ marginLeft: 10 }}
-                />
-            </View>
-            <View style={styles.insideBlock3}>
-                <TextInput
-                    placeholder="Idade"
-                    placeholderTextColor="#6B6E82"
-                    fontSize="14"
-                    fontWeight="400"
-                    style={{ marginLeft: 10 }}
-                />
-            </View>
-            <View style={styles.insideBlock3}>
-                <TextInput
-                    placeholder="Cor"
-                    placeholderTextColor="#6B6E82"
-                    fontSize="14"
-                    fontWeight="400"
-                    style={{ marginLeft: 10 }}
-                />
-            </View>
+        <View style={{ flexDirection: "row" }}>
+          <View style={styles.insideBlock3}>
+            <TextInput
+              placeholder="Género"
+              placeholderTextColor="#6B6E82"
+              fontSize="14"
+              fontWeight="400"
+              style={{ marginLeft: 10 }}
+              value={genero}
+              onChangeText={setGenero}
+            />
+          </View>
+          <View style={styles.insideBlock3}>
+            <TextInput
+              placeholder="Idade"
+              placeholderTextColor="#6B6E82"
+              fontSize="14"
+              fontWeight="400"
+              style={{ marginLeft: 10 }}
+              value={idade}
+              onChangeText={setIdade}
+            />
+          </View>
+          <View style={styles.insideBlock3}>
+            <TextInput
+              placeholder="Cor"
+              placeholderTextColor="#6B6E82"
+              fontSize="14"
+              fontWeight="400"
+              style={{ marginLeft: 10 }}
+              value={cor}
+              onChangeText={setCor}
+            />
+          </View>
         </View>
-        <View style={{flexDirection:"row"}}>
-            <View style={styles.insideBlock2}>
-                <TextInput
-                    placeholder="Tamanho"
-                    placeholderTextColor="#6B6E82"
-                    fontSize="14"
-                    fontWeight="400"
-                    style={{ marginLeft: 10 }}
-                />
-            </View>
-            <View style={styles.insideBlock2}>
-                <TextInput
-                    placeholder="Peso"
-                    placeholderTextColor="#6B6E82"
-                    fontSize="14"
-                    fontWeight="400"
-                    style={{ marginLeft: 10 }}
-                />
-            </View>
+        <View style={{ flexDirection: "row" }}>
+          <View style={styles.insideBlock2}>
+            <TextInput
+              placeholder="Tamanho"
+              placeholderTextColor="#6B6E82"
+              fontSize="14"
+              fontWeight="400"
+              style={{ marginLeft: 10 }}
+              value={tamanho}
+              onChangeText={setTamanho}
+            />
+          </View>
+          <View style={styles.insideBlock2}>
+            <TextInput
+              placeholder="Peso"
+              placeholderTextColor="#6B6E82"
+              fontSize="14"
+              fontWeight="400"
+              style={{ marginLeft: 10 }}
+              value={peso}
+              onChangeText={setPeso}
+            />
+          </View>
         </View>
         <View style={styles.insideBlock}>
-            <Dropdown
-                style={styles.dropdown}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                iconStyle={styles.iconStyle}
-                data={clientes}
-                labelField="nome"
-                valueField="id"
-                placeholder="Selecione o cliente"
-                value={selectedValue}
-                onChange={(item) => setSelectedValue(item.value)}
-            />
+          <Dropdown
+            style={styles.dropdown}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            iconStyle={styles.iconStyle}
+            data={clientes}
+            labelField="nome"
+            valueField="id"
+            placeholder="Selecione o cliente"
+            value={selectedValue}
+            onChange={(item) => setSelectedValue(item.value)}
+          />
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("VetScreen")}
+          onPress={addAnimal}
         >
           <Text style={styles.buttonText}>ADICIONAR</Text>
         </TouchableOpacity>
