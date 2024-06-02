@@ -34,7 +34,7 @@ export default function AdicionarVetAdmin() {
             email: email,
             nome: nome,
             password: password,
-            consultorio: consultorio,
+            idConsultorio: consultorio,
             numero: numero,
           });
           console.log("Veterinario adicionado com ID: ", docRef.id);
@@ -113,7 +113,7 @@ export default function AdicionarVetAdmin() {
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
-            value={numero}
+            value={password}
             onChangeText={setPassword}
           />
         </View>

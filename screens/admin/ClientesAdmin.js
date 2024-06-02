@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -14,10 +14,40 @@ import {
   UserIcon,
 } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { db } from "../../config/firebase.config";
 
 export default function ClientesAdmin() {
   const navigation = useNavigation();
-  const firstuser = require("../../assets/1User.png");
+  const [clientes, setClientes] = useState([]);
+
+  useEffect(() => {
+    fetchClientes();
+    console.log(clientes);
+  }, []);
+
+  const fetchClientes = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "clientes"));
+      const clientesData = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setClientes(clientesData);
+    } catch (error) {
+      console.error("Erro ao buscar clientes:", error);
+    }
+  };
+
+  const handleDeleteCliente = async (id) => {
+    try {
+      await deleteDoc(doc(db, "clientes", id));
+      console.log("Cliente excluído com sucesso!");
+      fetchClientes();
+    } catch (error) {
+      console.error("Erro ao excluir cliente:", error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -33,19 +63,21 @@ export default function ClientesAdmin() {
             <Text style={styles.buttonText}>Adicionar Cliente</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.firstuser}>
-          <Image source={firstuser} />
-          <View style={styles.infos}>
-            <Text style={styles.name}>Jonh Dee</Text>
-            <Text style={styles.email}>john.doe@gmail.com</Text>
+        {clientes.map(cliente => (
+          <View style={styles.firstuser} key={cliente.id}>
+            <Image source={require("../../assets/DrPaula.png")} style={{height:50,width:50, borderRadius:20}}/>
+            <View style={styles.infos}>
+              <Text style={styles.name}>{cliente.nome}</Text>
+              <Text style={styles.email}>{cliente.email}</Text>
+            </View>
+            <Pressable onPress={() => handleDeleteCliente(cliente.id)}>
+              <TrashIcon color={"gray"} marginTop={10} />
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate("EditarClienteAdmin")}>
+              <PencilIcon color={"gray"} marginLeft={20} marginTop={10} />
+            </Pressable>
           </View>
-          <Pressable onPress={() => console.log("Apagado!")}>
-            <TrashIcon color={"gray"} marginTop={10} />
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate("EditarClienteAdmin")}>
-            <PencilIcon color={"gray"} marginLeft={40} marginTop={10} />
-          </Pressable>
-        </View>
+        ))}
       </View>
     </View>
   );
@@ -98,7 +130,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   infos: {
-    width: 190,
+    width: 200,
     flexDirection: "column",
     marginRight: 35,
   },

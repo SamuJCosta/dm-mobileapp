@@ -19,7 +19,7 @@ export default function AddReceitasVet() {
   const [medicamento, setMedicamento] = useState("");
   const [quantidade, setQuantidade] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [consulta, setConsulta] = useState(null);
+  const [consulta, setConsulta] = useState([]);
 
   const navigation = useNavigation();
 
@@ -28,14 +28,14 @@ export default function AddReceitasVet() {
       const querySnapshot = await getDocs(collection(db, "consulta"));
       const consultaData = querySnapshot.docs.map(doc => ({
         id: doc.id,
-        idCliente: doc.idCliente,
-        idVeterinario: doc.idVeterinario,
+        ...doc.data(), // Incluir todos os dados do documento
       }));
       setConsulta(consultaData);
     } catch (e) {
       console.error("Erro ao buscar consulta: ", e);
     }
   };
+  
 
   useEffect(() => {
     fetchConsulta();
@@ -73,11 +73,12 @@ export default function AddReceitasVet() {
           selectedTextStyle={styles.selectedTextStyle}
           iconStyle={styles.iconStyle}
           data={consulta}
-          labelField="nome"
+          labelField="idCliente"
           valueField="id"
           placeholder="Selecione a consulta"
           value={selectedValue}
           onChange={(item) => {
+            console.log("Item selecionado:", item);
             setSelectedValue(item.id);
           }}        
         />
