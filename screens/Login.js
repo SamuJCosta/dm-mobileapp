@@ -14,10 +14,6 @@ import { useNavigation } from "@react-navigation/native";
 import InputWithIcon from "../src/components/InputWithIcon";
 import {
   getAuth,
-  onAuthStateChanged,
-  signInAnonymously,
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { app } from "../config/firebase.config";
@@ -42,6 +38,8 @@ export default function Login() {
       const user = userCred.user;
       if (user) {
         navigation.navigate("HomeScreen", { screen: "Inicio" });
+        //navigation.navigate("VetScreen", { screen: "InicioVet" });
+        //navigation.navigate("AdminScreen", { screen: "InicioAdmin" });
       }
     } catch (error) {
       const errCode = error.code;
@@ -231,4 +229,5 @@ const styles = StyleSheet.create({
 const Images = ({ link, style }) => {
   return <Image source={link} style={style} />;
 };
+
 

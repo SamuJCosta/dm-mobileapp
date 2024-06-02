@@ -12,9 +12,13 @@ import {
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import InputWithIcon from "../src/components/InputWithIcon";
-import { doc, setDoc } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { db, auth } from "../config/firebase.config";
+import { app } from "../config/firebase.config";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
+
 export default function Registo() {
   const logoImg = require("../assets/logo.png");
   const eclipse = require("../assets/eclipse.png");
@@ -35,7 +39,6 @@ export default function Registo() {
 
     
     const auth = getAuth();
-
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -50,8 +53,6 @@ export default function Registo() {
       Alert.alert("Erro", error.message);
     }
   };
-
-
 
   return (
     <Pressable style={styles.container} onPress={Keyboard.dismiss}>
@@ -241,3 +242,4 @@ const CustomButton = ({ text, action }) => {
     </TouchableOpacity>
   );
 };
+
