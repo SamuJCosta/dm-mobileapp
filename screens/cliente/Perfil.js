@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback , useState } from "react";
 import {
   View,
   Text,
@@ -16,14 +16,45 @@ import {
   ChevronRightIcon,
   ArrowLeftEndOnRectangleIcon,
 } from "react-native-heroicons/outline";
-import { useNavigation } from "@react-navigation/native";
-import {auth} from "../../config/firebase.config"; 
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import {auth, db} from "../../config/firebase.config"; 
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+
 import clientes from "../../data/clientes";
 
 export default function Perfil() {
   const navigation = useNavigation();
+  const [cliente, setCliente] = useState(null);
   const perfil = require("../../assets/perfil.png");
   const pata2 = require("../../assets/pata2.png");
+
+
+  const fetchCliente = async (user) => {
+    if (user) {
+      try {
+        const clienteDoc = await getDoc(doc(db, "clientes", user.uid));
+        if (clienteDoc.exists()) {
+          setCliente(clienteDoc.data());
+        } else {
+          console.log('No such document!');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar informações do cliente:', error);
+      }
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        fetchCliente(user);
+      });
+
+      return () => unsubscribe(); // Clean up subscription on unmount
+    }, [])
+  );
+
 
   function logout() {
     auth.signOut().then(() => {
@@ -34,7 +65,14 @@ export default function Perfil() {
     });
   }
 
-  const cliente = clientes[0];
+
+  if (!cliente) {
+    return (
+      <View style={styles.container}>
+        <Text>Carregando...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -57,7 +95,7 @@ export default function Perfil() {
           </View>
           <View style={styles.thirdView}>
             <PhoneIcon color={"#000"} size={22} />
-            <Text style={styles.texto}>{cliente.telemovel}</Text>
+            <Text style={styles.texto}>{cliente.telefone}</Text>
           </View>
         </View>
         <View style={styles.insideBlock2}>

@@ -12,12 +12,14 @@ import {
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import InputWithIcon from "../src/components/InputWithIcon";
-import { app } from "../config/firebase.config";
+import { collection, doc, setDoc } from "firebase/firestore";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
+import { db } from "../config/firebase.config";
 
 export default function Registo() {
   const logoImg = require("../assets/logo.png");
@@ -36,16 +38,19 @@ export default function Registo() {
       Alert.alert("Erro", "As senhas não correspondem.");
       return;
     }
-
-    
+  
     const auth = getAuth();
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+  
+      await setDoc(doc(db, "clientes", user.uid), {
+        email: email,
+        nome: "xxx",
+        password: password,
+        telefone:"999999999"
+      });
+  
       await sendEmailVerification(user);
       Alert.alert("Sucesso", "Verifique seu e-mail para confirmar a conta.");
       navigation.navigate("Login");
@@ -53,7 +58,6 @@ export default function Registo() {
       Alert.alert("Erro", error.message);
     }
   };
-
   return (
     <Pressable style={styles.container} onPress={Keyboard.dismiss}>
       <View className="w-full absolute flex-row justify-between items-center pt-14">

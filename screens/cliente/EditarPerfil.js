@@ -12,6 +12,7 @@ import {
 import { PencilIcon } from "react-native-heroicons/outline";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase.config";
+import { getAuth } from "firebase/auth";
 
 
 export default function EditarPerfil({ route }) {
@@ -21,20 +22,27 @@ export default function EditarPerfil({ route }) {
 
   const [nome, setNome] = useState(cliente.nome);
   const [email, setEmail] = useState(cliente.email);
-  const [telemovel, setTelemovel] = useState(cliente.telemovel.toString());
+  const [telefone, settelefone] = useState(cliente.telefone);
 
   const handleSave = async () => {
-    try {
-      const clienteRef = doc(db, "users", cliente.id); // Use o ID correto do documento
-      await updateDoc(clienteRef, {
-        nome: nome,
-        email: email,
-        telemovel: telemovel,
-      });
-      console.log("Dados atualizados com sucesso!");
-      navigation.navigate("Perfil");
-    } catch (error) {
-      console.error("Erro ao atualizar os dados: ", error);
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      try {
+        const clienteRef = doc(db, "clientes", user.uid); 
+        await updateDoc(clienteRef, {
+          nome: nome,
+          email: email,
+          telefone: telefone,
+        });
+        console.log("Dados atualizados com sucesso!");
+        navigation.navigate("Perfil");
+      } catch (error) {
+        console.error("Erro ao atualizar os dados: ", error);
+      }
+    } else {
+      console.log("Usuário não autenticado!");
     }
   };
 
@@ -74,13 +82,13 @@ export default function EditarPerfil({ route }) {
         <Text style={styles.informacoes}>TELEFONE</Text>
         <View style={styles.insideBlock}>
           <TextInput
-            placeholder={cliente.telemovel.toString()}
+            placeholder={cliente.telefone}
             placeholderTextColor="#6B6E82"
             fontSize="14"
             fontWeight="400"
             style={{ marginLeft: 10 }}
-            onChangeText={setTelemovel}
-            value={telemovel}
+            onChangeText={settelefone}
+            value={telefone}
           />
         </View>
         <TouchableOpacity
