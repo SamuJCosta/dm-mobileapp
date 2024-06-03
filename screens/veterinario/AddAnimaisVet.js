@@ -51,27 +51,30 @@ export default function AddAnimaisVet() {
   }, []);
 
   const addAnimal = async () => {
+    const auth = getAuth(); 
+    const user = auth.currentUser;
     if (!selectedValue) {
       console.error("Por favor, selecione um cliente antes de adicionar o animal.");
       return;
     }
-  
-    try {
-      const docRef = await addDoc(collection(db, "animal"), {
-        nome : nome,
-        alcunha : alcunha,
-        genero: genero,
-        idade: idade, 
-        cor: cor,
-        tamanho: tamanho, 
-        peso: peso,
-        descricao: "descricao",
-        clienteId : selectedValue,
-      });
-      console.log("Animal adicionado com ID: ", docRef.id);
-      navigation.navigate("VetScreen");
-    } catch (e) {
-      console.error("Erro ao adicionar animal: ", e);
+    if(user){
+      try {
+        const docRef = await addDoc(collection(db, "animal"), {
+          nome : nome,
+          alcunha : alcunha,
+          genero: genero,
+          idade: idade, 
+          cor: cor,
+          tamanho: tamanho, 
+          peso: peso,
+          descricao: "descricao",
+          clienteId : selectedValue,
+        });
+        console.log("Animal adicionado com ID: ", docRef.id);
+        navigation.navigate("VetScreen");
+      } catch (e) {
+        console.error("Erro ao adicionar animal: ", e);
+      }
     }
   };
   

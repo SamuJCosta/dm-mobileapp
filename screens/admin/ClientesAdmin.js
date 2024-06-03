@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -13,9 +13,10 @@ import {
   TrashIcon,
   UserIcon,
 } from "react-native-heroicons/outline";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase.config";
+import { getAuth } from "firebase/auth";
 
 export default function ClientesAdmin() {
   const navigation = useNavigation();
@@ -26,16 +27,26 @@ export default function ClientesAdmin() {
     console.log(clientes);
   }, []);
 
+  useFocusEffect(
+    useCallback(() => {
+      fetchClientes();
+    }, [])
+  );
+
   const fetchClientes = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "clientes"));
-      const clientesData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setClientes(clientesData);
-    } catch (error) {
-      console.error("Erro ao buscar clientes:", error);
+    const auth = getAuth(); 
+    const user = auth.currentUser;
+    if(user){
+      try {
+        const querySnapshot = await getDocs(collection(db, "clientes"));
+        const clientesData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setClientes(clientesData);
+      } catch (error) {
+        console.error("Erro ao buscar clientes:", error);
+      }
     }
   };
 

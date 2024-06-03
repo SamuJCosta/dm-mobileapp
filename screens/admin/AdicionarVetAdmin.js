@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -10,19 +10,40 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { PencilIcon } from "react-native-heroicons/outline";
-import { collection, addDoc } from "firebase/firestore"; 
-import { getAuth } from "firebase/auth";
+import { Dropdown } from "react-native-element-dropdown";
+import { collection, addDoc, getDocs } from "firebase/firestore"; 
 import { db } from "../../config/firebase.config";
+import { getAuth } from "firebase/auth";
 
 export default function AdicionarVetAdmin() {
+
+    const [selectedValue, setSelectedValue] = useState(null);
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [numero, setNumero] = useState("");
-    const [consultorio, setConsultorio] = useState("");
-    const [password, setPassword] = useState("");
+    const [consultorio, setConsultorio] = useState([]);
   
     const perfiladmin = require("../../assets/AdminImg.png");
     const navigation = useNavigation();
+
+    const fetchConsultorio = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "consultorio"));
+        const consultorioData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setConsultorio(consultorioData);
+      } catch (e) {
+        console.error("Erro ao buscar consultorio: ", e);
+      }
+    };
+    
+  
+    useEffect(() => {
+      fetchConsultorio();
+      console.log(consultorio);
+    }, []);
   
     const AddVetAdmin = async () => {
       try {
@@ -33,8 +54,8 @@ export default function AdicionarVetAdmin() {
           const docRef = await addDoc(collection(db, "veterinario"), {
             email: email,
             nome: nome,
-            password: password,
-            idConsultorio: consultorio,
+            password: "123456",
+            idConsultorio: selectedValue,
             numero: numero,
           });
           console.log("Veterinario adicionado com ID: ", docRef.id);
@@ -95,28 +116,22 @@ export default function AdicionarVetAdmin() {
         </View>
         <Text style={styles.informacao1}>Consultorio</Text>
         <View style={styles.insideBlock}>
-          <TextInput
-            placeholder="Consultório"
-            placeholderTextColor="#6B6E82"
-            fontSize="14"
-            fontWeight="400"
-            style={{ marginLeft: 10 }}
-            value={consultorio}
-            onChangeText={setConsultorio}
-          />
-        </View>
-        <Text style={styles.informacao1}>PASSWORD</Text>
-        <View style={styles.insideBlock}>
-          <TextInput
-            placeholder="Password"
-            placeholderTextColor="#6B6E82"
-            fontSize="14"
-            fontWeight="400"
-            style={{ marginLeft: 10 }}
-            value={password}
-            onChangeText={setPassword}
-          />
-        </View>
+        <Dropdown
+          style={styles.dropdown}
+          placeholderStyle={styles.placeholderStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          iconStyle={styles.iconStyle}
+          data={consultorio}
+          labelField="nome"
+          valueField="id"
+          placeholder="Selecione a consulta"
+          value={selectedValue}
+          onChange={(item) => {
+            console.log("Item selecionado:", item);
+            setSelectedValue(item.id);
+          }}        
+        />
+        </View>      
         <TouchableOpacity
           style={styles.button}
           onPress={AddVetAdmin}
@@ -182,18 +197,34 @@ const styles = StyleSheet.create({
   button: {
     display: "flex",
     width: 300,
-    height: 40,
+    height: 60,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
     flexShrink: 0,
     borderRadius: 10,
     backgroundColor: "#6FC4CF",
-    marginTop: 5,
+    marginTop: 25,
   },
   buttonText: {
     color: "#fff",
     fontSize: 15,
     fontWeight: "500",
+  },
+  dropdown: {
+    height: 50,
+    backgroundColor: "transparent",
+  },
+  placeholderStyle: {
+    fontSize: 14,
+    color: "#6B6E82",
+    fontWeight: "400",
+    marginLeft: 15,
+  },
+  selectedTextStyle: {
+    fontSize: 14,
+    color: "#6B6E82",
+    fontWeight: "400",
+    marginLeft: 15,
   },
 });

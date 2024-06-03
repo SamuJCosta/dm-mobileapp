@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,13 +10,14 @@ import {
   Alert
 } from "react-native";
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import InputWithIcon from "../src/components/InputWithIcon";
 import {
   getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { app } from "../config/firebase.config";
+import { app, db } from "../config/firebase.config";
+import { collection, getDocs } from "firebase/firestore";
 
 export default function Login() {
   const logoImg = require("../assets/logo.png");
@@ -29,6 +30,64 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const [clientes, setClientes] = useState([]);
+  const [veterinario, setVeterinario] = useState([]);
+  const [admin, setAdmin] = useState([]);
+
+  const route = useRoute();
+
+  useEffect(() => {
+    fetchClientes();
+    fetchVeterinario();
+    fetchAdmin();
+    //console.log(clientes);
+    //console.log(veterinario);
+    //console.log(admin);
+    //console.log(route.params.isAdmin);
+    
+    setIsAdmin(route.params.isAdmin);
+    console.log(isAdmin);
+  }, [route.params]);
+
+
+  const fetchClientes = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "clientes"));
+      const clientesData = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setClientes(clientesData);
+    } catch (error) {
+      console.error("Erro ao buscar clientes:", error);
+    }
+  };
+  const fetchVeterinario = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "veterinario"));
+      const veterinarioData = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setVeterinario(veterinarioData);
+    } catch (error) {
+      console.error("Erro ao buscar vet:", error);
+    }
+  };
+  const fetchAdmin = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "admin"));
+      const adminData = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setAdmin(adminData);
+    } catch (error) {
+      console.error("Erro ao buscar admin:", error);
+    }
+  };
 
   const handleSignIn = async () => {
     try {
@@ -39,7 +98,20 @@ export default function Login() {
       if (user) {
         //navigation.navigate("HomeScreen", { screen: "Inicio" });
         //navigation.navigate("VetScreen", { screen: "InicioVet" });
-        navigation.navigate("CriarConsultorioAdmin");
+        //navigation.navigate("CriarConsultorioAdmin");
+
+        if(isAdmin){}
+
+        const userEmail = user.email;
+        if (admin.some(adminUser => adminUser.email === userEmail)) {
+          navigation.navigate("CriarConsultorioAdmin");
+        } else if (veterinario.some(vetUser => vetUser.email === userEmail)) {
+          navigation.navigate("VetScreen", { screen: "InicioVet" });
+        } else if (clientes.some(clientUser => clientUser.email === userEmail)) {
+          navigation.navigate("HomeScreen", { screen: "Inicio" });
+        } else {
+          Alert.alert("Erro", "Usuário não encontrado.");
+        }
       }
     } catch (error) {
       const errCode = error.code;
@@ -117,7 +189,7 @@ export default function Login() {
         <Text style={{ fontSize: 16, color: "#747070" }}>
           Ainda não tem conta criada?{" "}
         </Text>
-        <Pressable onPress={() => navigation.navigate("Registo")}>
+        <Pressable onPress={() => navigation.navigate("Registo", { isAdmin })}>
           <Text
             style={{
               fontSize: 16,

@@ -13,6 +13,7 @@ import { PlusIcon } from "react-native-heroicons/outline";
 import { Dropdown } from "react-native-element-dropdown";
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
 import { db } from "../../config/firebase.config";
+import { getAuth } from "firebase/auth";
 
 export default function AddReceitasVet() {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -28,7 +29,7 @@ export default function AddReceitasVet() {
       const querySnapshot = await getDocs(collection(db, "consulta"));
       const consultaData = querySnapshot.docs.map(doc => ({
         id: doc.id,
-        ...doc.data(), // Incluir todos os dados do documento
+        ...doc.data(),
       }));
       setConsulta(consultaData);
     } catch (e) {
@@ -43,23 +44,28 @@ export default function AddReceitasVet() {
   }, []);
 
   const addReceita = async () => {
+    const auth = getAuth(); 
+    const user = auth.currentUser;
     if (!selectedValue) {
       console.error("Por favor, selecione uma consulta antes de adicionar a receita.");
       return;
     }
-  
-    try {
-      const docRef = await addDoc(collection(db, "receita"), {
-        descricao: descricao,
-        medicamento: medicamento,
-        preco: "",
-        quantidade: quantidade, 
-        idConsulta: selectedValue,
-      });
-      console.log("Receita adicionada com ID: ", docRef.id);
-      navigation.navigate("VetScreen");
-    } catch (e) {
-      console.error("Erro ao adicionar a receita: ", e);
+
+    
+    if(user){
+      try {
+        const docRef = await addDoc(collection(db, "receita"), {
+          descricao: descricao,
+          medicamento: medicamento,
+          preco: "",
+          quantidade: quantidade, 
+          idConsulta: selectedValue,
+        });
+        console.log("Receita adicionada com ID: ", docRef.id);
+        navigation.navigate("VetScreen");
+      } catch (e) {
+        console.error("Erro ao adicionar a receita: ", e);
+      }
     }
   };
 

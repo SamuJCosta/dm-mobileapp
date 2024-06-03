@@ -1,3 +1,4 @@
+import React, { useCallback , useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -20,19 +21,19 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import {auth, db} from "../../config/firebase.config"; 
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import React, { useCallback , useState } from "react";
 
 export default function PerfilVet() {
   const navigation = useNavigation();
   const perfil = require("../../assets/DrPaula.png");
   const pata2 = require("../../assets/pata2.png");
-  const [cliente, setCliente] = useState(null);
+  const [cliente, setCliente] = useState([]);
 
 
   const fetchCliente = async (user) => {
+
     if (user) {
       try {
-        const clienteDoc = await getDoc(doc(db, "clientes", user.uid));
+        const clienteDoc = await getDoc(doc(db, "veterinario", user.uid));
         if (clienteDoc.exists()) {
           setCliente(clienteDoc.data());
         } else {
@@ -48,6 +49,7 @@ export default function PerfilVet() {
     useCallback(() => {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
         fetchCliente(user);
+        console.log(cliente)
       });
       return () => unsubscribe();
     }, [])
@@ -81,7 +83,7 @@ export default function PerfilVet() {
             <Text style={styles.personname}>{cliente.nome}</Text>
             <TouchableOpacity
               style={{ flexDirection: "row", marginLeft: 45, columnGap: 8 }}
-              onPress={() => navigation.navigate("SplashScreen")}
+              onPress={logout}
             >
               <ArrowLeftEndOnRectangleIcon color={"red"} />
               <Text style={styles.sair}>Sair</Text>
@@ -93,7 +95,7 @@ export default function PerfilVet() {
           </View>
           <View style={styles.thirdView}>
             <PhoneIcon color={"#000"} size={22} />
-            <Text style={styles.texto}>{cliente.telefone}</Text>
+            <Text style={styles.texto}>{cliente.numero}</Text>
           </View>
         </View>
         <View style={styles.insideBlock2}>

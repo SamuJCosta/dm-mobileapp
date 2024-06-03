@@ -30,6 +30,7 @@ export default function CriarConsultorioAdmin() {
 
       if (user) {
         const docRef = await addDoc(collection(db, "consultorio"), {
+          idAdmin: user.uid,
           email: email,
           nome: nome,
           numero: numero,

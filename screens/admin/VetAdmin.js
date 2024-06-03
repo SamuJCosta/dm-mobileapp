@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -13,11 +13,56 @@ import {
   TrashIcon,
   UserIcon,
 } from "react-native-heroicons/outline";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { db } from "../../config/firebase.config";
+import { getAuth } from "firebase/auth";
 
 export default function VetAdmin() {
   const navigation = useNavigation();
   const firstvet = require("../../assets/DrPaula.png");
+  const [veterinario, setVeterinario] = useState([]);
+
+
+
+  const fetchVeterinario = async () => {
+    const auth = getAuth(); 
+    const user = auth.currentUser;
+    if(user){
+      try {
+        const querySnapshot = await getDocs(collection(db, "veterinario"));
+        const veterinarioData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setVeterinario(veterinarioData);
+      } catch (e) {
+        console.error("Erro ao buscar veterionario: ", e);
+      }
+    }
+  };
+  
+
+  useEffect(() => {
+    fetchVeterinario();
+    console.log(veterinario);
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchVeterinario();
+    }, [])
+  );
+
+  const handleDeleteVeterinario = async (id) => {
+    try {
+      await deleteDoc(doc(db, "veterinario", id));
+      console.log("Vet excluído com sucesso!");
+      fetchVeterinario();
+    } catch (error) {
+      console.error("Erro ao excluir Vet:", error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -33,21 +78,23 @@ export default function VetAdmin() {
             <Text style={styles.buttonText}>Adicionar Veterinario</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.firstvet}>
-          <Image source={firstvet} style={styles.imgvet} />
-          <View style={styles.infos}>
-            <Text style={styles.name}>Dr Paula</Text>
-            <Text style={styles.email}>paulasantos@gmail.com</Text>
+        {veterinario.map(veterinario => (
+          <View style={styles.firstvet} key={veterinario.id}>
+            <Image source={firstvet} style={styles.imgvet} />
+            <View style={styles.infos}>
+              <Text style={styles.name}>{veterinario.nome}</Text>
+              <Text style={styles.email}>{veterinario.email}</Text>
+            </View>
+            <Pressable onPress={() =>handleDeleteVeterinario(veterinario.id)}>
+              <TrashIcon color={"gray"} marginTop={10} />
+            </Pressable>
+            <Pressable
+              onPress={() => navigation.navigate("EditarVeterinarioAdmin")}
+            >
+              <PencilIcon color={"gray"} marginLeft={40} marginTop={10} />
+            </Pressable>
           </View>
-          <Pressable onPress={() => console.log("Apagado!")}>
-            <TrashIcon color={"gray"} marginTop={10} />
-          </Pressable>
-          <Pressable
-            onPress={() => navigation.navigate("EditarVeterinarioAdmin")}
-          >
-            <PencilIcon color={"gray"} marginLeft={40} marginTop={10} />
-          </Pressable>
-        </View>
+        ))}
       </View>
     </View>
   );

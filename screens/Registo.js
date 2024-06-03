@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ import {
   Alert,
 } from "react-native";
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import InputWithIcon from "../src/components/InputWithIcon";
 import { collection, doc, setDoc } from "firebase/firestore";
 
@@ -28,11 +28,24 @@ export default function Registo() {
   const facebookicon = require("../assets/facebookicon.png");
   const appleicon = require("../assets/appleicon.png");
   const navigation = useNavigation();
-
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const route = useRoute();
+
+
+  useEffect(() => {
+    //console.log(isAdmin);
+    //console.log(route.params)
+    setIsAdmin(route.params.isAdmin);
+    console.log(isAdmin);
+}, [route.params]);
+
+  
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
       Alert.alert("Erro", "As senhas não correspondem.");
@@ -44,16 +57,25 @@ export default function Registo() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
   
-      await setDoc(doc(db, "clientes", user.uid), {
-        email: email,
-        nome: "xxx",
-        password: password,
-        telefone:"999999999"
-      });
-  
+
+      if(isAdmin){
+        await setDoc(doc(db, "admin", user.uid), {
+          email: email,
+          nome: email,
+          password: password,
+          telefone:"999999999"
+        });
+      }else{
+        await setDoc(doc(db, "clientes", user.uid), {
+          email: email,
+          nome: "xxx",
+          password: password,
+          telefone:"999999999"
+        });
+      }
       await sendEmailVerification(user);
       Alert.alert("Sucesso", "Verifique seu e-mail para confirmar a conta.");
-      navigation.navigate("Login");
+      navigation.navigate("Login", { isAdmin });
     } catch (error) {
       Alert.alert("Erro", error.message);
     }
@@ -124,7 +146,7 @@ export default function Registo() {
         <Text style={{ fontSize: 16, color: "#747070" }}>
           Já tem conta criada?{" "}
         </Text>
-        <Pressable onPress={() => navigation.navigate("Login")}>
+        <Pressable onPress={() => navigation.navigate("Login", {isAdmin: false})}>
           <Text
             style={{
               fontSize: 16,
