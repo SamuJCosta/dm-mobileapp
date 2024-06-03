@@ -59,7 +59,7 @@ export default function PerfilVet() {
   function logout() {
     auth.signOut().then(() => {
       console.log('Utilizador Logout');
-      navigation.replace('Login');
+      navigation.replace('Login', {isAdmin:false});
     }).catch((error) => {
       console.error('Erro durante o logout: ', error);
     });
