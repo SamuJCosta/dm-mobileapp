@@ -3,7 +3,7 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";  // Adicione esta linha para importar autenticação
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBb0cSeGt80QBqVrFxaV8LkU50FEdBGrC0",
+  apiKey: "",
   authDomain: "vetforall-e2d3b.firebaseapp.com",
   projectId: "vetforall-e2d3b",
   storageBucket: "vetforall-e2d3b.appspot.com",
